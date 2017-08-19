@@ -1,0 +1,123 @@
+<div [@routerTransition]>
+  <div class="row justify-content-center">
+    <h2 class="text-muted">Electricity Assistance <small>Global Chilling</small></h2>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let slider of sliders">
+          <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%" />
+          <div class="carousel-caption">
+            <a id="startPoint" pageScroll href="#startPoint" class="btn btn-lg btn-success" style="margin: 20px"
+            (click)=startBtnClick()>Start saving your bills!</a>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+  <br/>
+
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <fieldset #inputFieldSet [ngClass]="inputFieldSetClasses">
+        <input #inputNumber [ngClass]="inputNumberClasses" type="number" (keyup.enter)="getAverageUsageInput(inputNumber.value)"
+          (keyup)="checkValidation($event)" placeholder="Input your electricity usage last month(kWh)" />
+      </fieldset>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <select #monthSelector class="form-control">
+                  <option>--please select month--</option>
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>Septemper</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-primary" (click)="getAverageUsageInput(inputNumber.value, monthSelector.value)">Confirm</button>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="!isMonthSelected">
+    <div class="alert alert-danger col-md-6">
+      <strong>Invalid input</strong> Please select the month.
+    </div>
+  </div>
+
+  <div class="row" *ngIf="showCharts">
+    <div class="col col-sm-6">
+      <!-- World Bar Chart -->
+      <div #worldBarChart class="card mb-3" *ngIf="worldOrAustralia == 'world'">
+        <div class="card-header">
+          Average electricity usage (kWh)
+        </div>
+        <div class="card-block">
+          <canvas baseChart [datasets]="barChartDataWorld" 
+            [labels]="barChartLabelsWorld" [options]="barChartOptions" [legend]="barChartLegend" 
+            [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-info btn-sm" (click)="showWorld()">World</button>
+          <button class="btn btn-info btn-sm" (click)="showAustralia()">Australia</button>
+        </div>
+      </div>
+
+      <!-- Australia Bar Chart -->
+      <div #australiaBarChart class="card mb-3" *ngIf="worldOrAustralia == 'Australia'">
+          <div class="card-header">
+            Average electricity usage (kWh)
+          </div>
+          <div class="card-block">
+            <canvas baseChart [datasets]="barChartDataAustralia"
+              [labels]="barChartLabelsAustralia" [options]="barChartOptions" [legend]="barChartLegend" 
+              [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-info btn-sm" (click)="showWorld()">World</button>
+            <button class="btn btn-info btn-sm" (click)="showAustralia()">Australia</button>
+          </div>
+        </div>
+    </div>
+    <div class="col col-sm-6">
+      <div class="card mb-3">
+        <div class="card-header">
+          Your electricity comes from different sources (kWh)
+        </div>
+        <div class="card-block">
+          <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            <!--(chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"-->
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+
+  <h1 *ngIf="showCharts">Total CO<sub>2</sub> emission: {{totalCo2Emission | number: '.1-2'}}kg/year</h1>
+
+
+
+
+
+
+
+
+
+
+
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
