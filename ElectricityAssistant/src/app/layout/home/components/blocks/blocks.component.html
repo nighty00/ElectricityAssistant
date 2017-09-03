@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <h1>Choice</h1>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="row" id="block">
+            <div id="tvBlock" class="col-md-4" [@blockAnimation]="tvState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+                <a class="" href="#">
+                <img class="img-fluid" 
+                [src]="tvCompleted? '../../../../assets/images/blocks/tv_tick_icon.png': '../../../../assets/images/blocks/tv_icon.png'" alt="">
+                <p>Entertainment</p>
+              </a>
+            </div>
+            <div id="ovenBlock" class="col-md-4" [@blockAnimation]="ovenState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+                <a class="" href="#">
+                <img class="img-fluid" 
+                [src]="ovenCompleted ? '../../../../assets/images/blocks/oven_tick_icon.png': '../../../../assets/images/blocks/oven_icon.png'" alt="">
+                <p>Kitchen</p>
+              </a>
+            </div>
+            <div id="washingBlock" class="col-md-4" [@blockAnimation]="washingState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+                <a class="" href="#">
+                <img class="img-fluid" 
+                [src]="washingCompleted ? '../../../../assets/images/blocks/washing_tick_icon.png': '../../../../assets/images/blocks/washing_icon.png'" alt="">
+                <p>Laundry</p>
+              </a>
+            </div>
+            <div id="lightBulbBlock" class="col-md-4" [@blockAnimation]="lightbulbState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+                <a class="" [routerLink]="['/questionnaire']" [routerLinkActive]="['router-link-active']">
+                <img class="img-fluid" 
+                [src]="lightBulbCompleted ? '../../../../assets/images/blocks/lightbulb_tick_icon.png': '../../../../assets/images/blocks/lightbulb_icon.png'" alt="">
+                <p>Lighting</p>
+              </a>
+            </div>
+            <div id="airConditionerBlock" class="col-md-4" [@blockAnimation]="airconditionerState" (mouseenter)="onMouseEnter($event)"
+                (mouseleave)="onMouseLeave($event)">
+                <a class="" href="#">
+                <img class="img-fluid" 
+                [src]="airConditionerCompleted ? '../../../../assets/images/blocks/air_conditioner_tick_icon.png': '../../../../assets/images/blocks/air_conditioner_icon.png'" alt="">
+                <p>Cooling</p>
+              </a>
+            </div>
+            <div id="heaterBlock" class="col-md-4" [@blockAnimation]="heaterState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+                <a class="" href="#">
+                <img class="img-fluid" 
+                [src]="heaterCompleted ? '../../../../assets/images/blocks/heating_tick_icon.png': '../../../../assets/images/blocks/heating_icon.png'" alt="">
+                <p>Heating</p>
+              </a>
+            </div>
+        </div>
+    </div>
+</div>

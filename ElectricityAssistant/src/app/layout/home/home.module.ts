@@ -8,6 +8,11 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { PageHeaderModule } from './../../shared';
 import { StatModule } from '../../shared';
+import { SlidersComponent } from './components/sliders/sliders.component';
+import { ChartsComponent } from './components/charts/charts.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { BlocksComponent } from './components/blocks/blocks.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -17,8 +22,9 @@ import { StatModule } from '../../shared';
     HomeRoutingModule,
     Ng2Charts,
     PageHeaderModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    FormsModule
   ],
-  declarations: [HomeComponent]
+  declarations: [HomeComponent, SlidersComponent, ChartsComponent, ContactComponent, BlocksComponent]
 })
 export class HomeModule { }

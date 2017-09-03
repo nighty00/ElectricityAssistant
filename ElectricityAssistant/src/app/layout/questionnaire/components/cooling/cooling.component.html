@@ -1,0 +1,118 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <!-- Question 1: Which type of cooling system are you using now?-->
+    <div class="row">
+      <fieldset class="form-group">
+        <label>Which type of cooling system do you normally use?</label>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question1" value="portable fan" (click)="onQ11Click()" 
+                  [(ngModel)]="type"> Portable fan
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question1" value="split system air conditioner" 
+                (click)="onQ12Click()" [(ngModel)]="type"> Split system air conditioner
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question1" value="ducted refrigerative air conditioner" 
+                  (click)="onQ13Click()" [(ngModel)]="type"> Ducted refrigerative air conditioner
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question1" value="ducted evaporative cooling" 
+                  (click)="onQ14Click()" [(ngModel)]="type"> Ducted evaporative cooling
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 2 What is the size of the room? -->
+    <div class="row" *ngIf="type == 'portable fan' || type == 'split system air conditioner'" [@questionShowUp]=question2State>
+      <fieldset class="form-group">
+        <label>What is the size of the room?</label>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question2" value="small" [(ngModel)]="spaceSize"> About 12m<sup>2</sup>
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question2" value="medium" [(ngModel)]="spaceSize"> About 30m<sup>2</sup>
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question2" value="large" [(ngModel)]="spaceSize"> About 60m<sup>2</sup>
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 3 Select the total area of the house. -->
+    <div class="row" *ngIf="type == 'ducted refrigerative air conditioner' || type == 'ducted evaporative cooling'" [@questionShowUp]=question3State>
+      <fieldset class="form-group">
+        <label>Select the total area of the house.</label>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question3" value="small" [(ngModel)]="spaceSize"> About 100m<sup>2</sup>
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question3" value="medium" [(ngModel)]="spaceSize"> About 160m<sup>2</sup>
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question3" value="large" [(ngModel)]="spaceSize"> About 220m<sup>2</sup>
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 4: What is the energy rating of your air conditioner?-->
+    <div class="row" *ngIf="type == 'ducted refrigerative air conditioner' || type == 'split system air conditioner'" [@questionShowUp]=question4State>
+      <fieldset class="form-group">
+        <label>What is the energy rating of your air conditioner?</label>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question4" value="2" [(ngModel)]="energyRating"> 1~3 stars
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question4" value="6" [(ngModel)]="energyRating"> 4~6 stars
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-primary" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Confirm</button>
+    </div>
+
+
+
+    <!-- this.inputFieldSetClasses = {
+        "form-group": true,
+        "has-success": false,
+        "has-danger": false
+      }
+      this.inputNumberClasses = {
+        "form-control": true,
+        "form-control-success": false,
+        "form-control-danger": false
+      } -->
+
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>

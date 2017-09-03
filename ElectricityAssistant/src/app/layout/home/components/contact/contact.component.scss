@@ -1,0 +1,116 @@
+p {
+    line-height: 1.75; 
+}
+    
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 700;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+section {
+    padding: 100px 0; 
+}
+    section h2.section-heading {
+      font-size: 40px;
+      margin-top: 0;
+      margin-bottom: 15px; }
+    section h3.section-subheading {
+      font-size: 16px;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 75px;
+      text-transform: none;
+      font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+     }
+
+section#contact {
+    background-color: #222222;
+    background-image: url("../../../../../assets/images/map-image.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+    section#contact .section-heading {
+      color: white; 
+    }
+    section#contact .form-group {
+      margin-bottom: 25px; }
+      section#contact .form-group input,
+      section#contact .form-group textarea {
+        padding: 20px; }
+      section#contact .form-group input.form-control {
+        height: auto; }
+      section#contact .form-group textarea.form-control {
+        height: 236px; }
+    section#contact .form-control:focus {
+      border-color: #fed136;
+      box-shadow: none; }
+    section#contact ::-webkit-input-placeholder {
+      font-weight: 700;
+      color: #eeeeee;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-transform: uppercase; }
+    section#contact :-moz-placeholder {
+      font-weight: 700;
+      color: #eeeeee;
+      /* Firefox 18- */
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-transform: uppercase; }
+    section#contact ::-moz-placeholder {
+      font-weight: 700;
+      color: #eeeeee;
+      /* Firefox 19+ */
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-transform: uppercase; }
+    section#contact :-ms-input-placeholder {
+      font-weight: 700;
+      color: #eeeeee;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      text-transform: uppercase; }
+    section#contact .text-danger {
+      color: #e74c3c; }
+
+      //btn-x1
+      .btn-xl {
+        font-size: 18px;
+        font-weight: 700;
+        padding: 20px 40px;
+        border-radius: 3px;
+        color: white;
+        border-color: #fed136;
+        background-color: #fed136;
+        font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        text-transform: uppercase; }
+        .btn-xl.focus, .btn-xl:focus {
+          color: white;
+          border-color: #b48b01;
+          background-color: #fec503; }
+        .btn-xl:hover {
+          color: white;
+          border-color: #f6bf01;
+          background-color: #fec503; }
+        .btn-xl.active, .btn-xl:active,
+        .open > .btn-xl.dropdown-toggle {
+          color: white;
+          border-color: #f6bf01;
+          background-color: #fec503; }
+          .btn-xl.active.focus, .btn-xl.active:focus, .btn-xl.active:hover, .btn-xl:active.focus, .btn-xl:active:focus, .btn-xl:active:hover,
+          .open > .btn-xl.dropdown-toggle.focus,
+          .open > .btn-xl.dropdown-toggle:focus,
+          .open > .btn-xl.dropdown-toggle:hover {
+            color: white;
+            border-color: #b48b01;
+            background-color: #dcab01; }
+        .btn-xl.active, .btn-xl:active,
+        .open > .btn-xl.dropdown-toggle {
+          background-image: none; }
+        .btn-xl.disabled.focus, .btn-xl.disabled:focus, .btn-xl.disabled:hover, .btn-xl[disabled].focus, .btn-xl[disabled]:focus, .btn-xl[disabled]:hover,
+        fieldset[disabled] .btn-xl.focus,
+        fieldset[disabled] .btn-xl:focus,
+        fieldset[disabled] .btn-xl:hover {
+          border-color: #fed136;
+          background-color: #fed136; }
+        .btn-xl .badge {
+          color: #fed136;
+          background-color: white; }

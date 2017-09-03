@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-12">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slider of sliders">
+        <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide"/>
+        <div class="carousel-caption">
+          <a pageScroll href="#startPoint" class="btn btn-lg btn-success">
+            Start saving your bills!
+          </a>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
+<hr id="startPoint" />

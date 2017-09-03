@@ -1,0 +1,167 @@
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <fieldset #inputFieldSet [ngClass]="inputFieldSetClasses">
+      <input #inputNumber [ngClass]="inputNumberClasses" type="number" (keyup.enter)="getAverageUsageInput(inputNumber.value)"
+        (keyup)="checkValidation($event)" placeholder="Input your electricity usage last month(kWh)" maxlength="5" [(ngModel)]="inputUsage"
+      />
+    </fieldset>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+      <select #monthSelector class="form-control" [(ngModel)]="monthSelected">
+                  <option>--please select month--</option>
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>Septemper</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
+        </select>
+    </div>
+  </div>
+  <div class="col-md-1">
+    <button class="btn btn-primary" (click)="getAverageUsageInput(inputNumber.value, monthSelector.value)">Confirm</button>
+  </div>
+</div>
+<div class="row justify-content-center" *ngIf="!isMonthSelected">
+  <div class="alert alert-danger col-md-6">
+    <strong>Invalid input</strong> Please select the month.
+  </div>
+</div>
+
+<div class="row" *ngIf="showCharts">
+  <div class="col col-sm-7">
+    <!-- World Bar Chart -->
+    <div #worldBarChart class="card mb-3" *ngIf="worldOrAustralia == 'world'">
+      <div class="card-header">
+        Average electricity usage (kWh)
+      </div>
+      <div class="card-block">
+        <canvas baseChart [datasets]="barChartDataWorld" [labels]="barChartLabelsWorld" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-info btn-sm" (click)="showWorld()">World</button>
+        <button class="btn btn-info btn-sm" (click)="showAustralia()">Australia</button>
+      </div>
+    </div>
+
+    <!-- Australia Bar Chart -->
+    <div #australiaBarChart class="card mb-3" *ngIf="worldOrAustralia == 'Australia'">
+      <div class="card-header">
+        Average electricity usage (kWh)
+      </div>
+      <div class="card-block">
+        <canvas baseChart [datasets]="barChartDataAustralia" [labels]="barChartLabelsAustralia" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-info btn-sm" (click)="showWorld()">World</button>
+        <button class="btn btn-info btn-sm" (click)="showAustralia()">Australia</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <h1 *ngIf="showCharts">Total CO<sub>2</sub> emission: {{totalCo2Emission | number: '.1-2'}}kg/year</h1>
+    <img class="img-fluid" src="../../../assets/images/tree.jpg" />
+  </div>
+
+  <div *ngIf="false" class="col col-sm-6">
+    <div class="card mb-3">
+      <div class="card-header">
+        Your electricity comes from different sources (kWh)
+      </div>
+      <div class="card-block">
+        <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+          (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<!-- blocks -->
+<div class="row justify-content-center" *ngIf="showCharts">
+  <h1>Choice</h1>
+</div>
+
+<div class="row justify-content-center" *ngIf="showCharts">
+  <div class="col-md-5">
+    <div class="row" id="block" style="padding: 0">
+      <div id="tvBlock" class="col-md-4" [@blockAnimation]="tvState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+        <a class="" [routerLink]="['/questionnaire/entertainment']" [routerLinkActive]="['router-link-active']">
+            <img class="img-fluid" 
+            [src]="entertainmentTotalUsage != null ? '../../../../assets/images/blocks/tv_tick_icon.png': '../../../../assets/images/blocks/tv_icon.png'" alt="">
+            <p>Entertainment</p>
+          </a>
+      </div>
+      <div id="ovenBlock" class="col-md-4" [@blockAnimation]="ovenState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+        <a class="" [routerLink]="['/questionnaire/kitchen']" [routerLinkActive]="['router-link-active']">
+            <img class="img-fluid" 
+            [src]="kitchenTotalUsage != null ? '../../../../assets/images/blocks/oven_tick_icon.png': '../../../../assets/images/blocks/oven_icon.png'" alt="">
+            <p>Kitchen</p>
+          </a>
+      </div>
+      <div id="washingBlock" class="col-md-4" [@blockAnimation]="washingState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+        <a class="" [routerLink]="['/questionnaire/laundry']" [routerLinkActive]="['router-link-active']">
+            <img class="img-fluid" 
+            [src]="laundryTotalUsage != null ? '../../../../assets/images/blocks/washing_tick_icon.png': '../../../../assets/images/blocks/washing_icon.png'" alt="">
+            <p>Laundry</p>
+          </a>
+      </div>
+      <div id="lightBulbBlock" class="col-md-4" [@blockAnimation]="lightbulbState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+        <a class="" [routerLink]="['/questionnaire/lighting']" [routerLinkActive]="['router-link-active']">
+            <img class="img-fluid" 
+            [src]="lightTotalUsage != null ? '../../../../assets/images/blocks/lightbulb_tick_icon.png': '../../../../assets/images/blocks/lightbulb_icon.png'" alt="">
+            <p>Lighting</p>
+          </a>
+      </div>
+      <div id="airConditionerBlock" class="col-md-4" [@blockAnimation]="airconditionerState" (mouseenter)="onMouseEnter($event)"
+        (mouseleave)="onMouseLeave($event)">
+        <a class="" [routerLink]="['/questionnaire/cooling']" [routerLinkActive]="['router-link-active']">
+            <img class="img-fluid" 
+            [src]="coolTotalUsage != null ? '../../../../assets/images/blocks/air_conditioner_tick_icon.png': '../../../../assets/images/blocks/air_conditioner_icon.png'" alt="">
+            <p>Cooling</p>
+          </a>
+      </div>
+      <div id="heaterBlock" class="col-md-4" [@blockAnimation]="heaterState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+        <a class="" [routerLink]="['/questionnaire/heating']" [routerLinkActive]="['router-link-active']">
+            <img class="img-fluid" 
+            [src]="heatTotalUsage != null ? '../../../../assets/images/blocks/heating_tick_icon.png': '../../../../assets/images/blocks/heating_icon.png'" alt="">
+            <p>Heating</p>
+          </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center" *ngIf="showCharts">
+  <div class="col-md-1">
+    <button class="btn btn-primary" (click)="generateReport()" [disabled]="heatTotalUsage == null || coolTotalUsage == null || lightTotalUsage == null || kitchenTotalUsage == null || entertainmentTotalUsage == null || laundryTotalUsage == null">
+      Generate report
+    </button>
+  </div>
+</div>
+
+<div class="row justify-content-center" *ngIf="showReport">
+  <div class="col-md-6">
+    <div class="card-header">
+      Distribution of your electricity usage
+    </div>
+    <div class="card-block">
+      <canvas baseChart [data]="reportPieChartData" [labels]="reportPieChartLabels" [chartType]="reportPieChartType">
+      </canvas>
+    </div>
+  </div>
+</div>
+<!-- blocks -->

@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <!-- Question 1: Are you using any HALOGEN lights in your home?-->
+    <div class="row">
+      <fieldset class="form-group">
+        <label>Are you using any halogen lights in your home?</label>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question1" value="Yes" (click)="onQ1YesClick()" 
+                  [(ngModel)]="halogenLight"> Yes
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question1" value="No" (click)="onQ1NoClick()" 
+                  [(ngModel)]="halogenLight"> No
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 2 Approximately how many halogen lights are you using in your home?-->
+    <div class="row" *ngIf="halogenLight == 'Yes'" [@questionShowUp]=question2State>
+      <fieldset class="form-group">
+        <label>Approximately how many halogen lights are you now using in your home?</label>
+        <input class="form-control" type="number" placeholder="number of halogen lights" maxlength="2" [(ngModel)]="numberOfLights"
+        />
+      </fieldset>
+    </div>
+
+    <!-- Question 3 How bright are those halogen lights? -->
+    <div class="row" *ngIf="halogenLight == 'Yes'" [@questionShowUp]=question3State>
+      <fieldset class="form-group">
+        <label>How bright are those halogen lights?</label>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question3" value="0.1" [(ngModel)]="powerOfLights"> Very bright
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question3" value="0.06" [(ngModel)]="powerOfLights"> Average bright
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question3" value="0.04" [(ngModel)]="powerOfLights"> Slightly dim
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 4: Do you have habit of leaving the lights on in the room that you are not using?-->
+    <div class="row">
+      <fieldset class="form-group">
+        <label>Do you have habit of leaving the lights on in the room that you are not using?</label>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question4" value="0.9" [(ngModel)]="switchOff"> Yes
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+                <input type="radio" name="question4" value="1.0" [(ngModel)]="switchOff"> No
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 5: Do you leave the lights on when you are sleeping?-->
+    <div class="row">
+      <fieldset class="form-group">
+        <label>Do you leave the lights on when you are sleeping?</label>
+        <div class="radio">
+          <label>
+              <input type="radio" name="question5" value="130" [(ngModel)]="sleepTime"> Yes
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+              <input type="radio" name="question5" value="0" [(ngModel)]="sleepTime"> No
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-primary" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Confirm</button>
+    </div>
+
+
+
+    <!-- this.inputFieldSetClasses = {
+        "form-group": true,
+        "has-success": false,
+        "has-danger": false
+      }
+      this.inputNumberClasses = {
+        "form-control": true,
+        "form-control-success": false,
+        "form-control-danger": false
+      } -->
+
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>

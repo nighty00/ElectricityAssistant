@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <!-- Question 1 How many hours do you use oven per week? -->
+    <div class="row">
+      <fieldset class="form-group">
+        <label>How many hours do you use oven per week?</label>
+        <div class="radio">
+          <label>
+              <input type="radio" name="question1" value="3" [(ngModel)]="ovenHours"/> Less than 5 hours
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+              <input type="radio" name="question1" value="8" [(ngModel)]="ovenHours"/> Less than 10 hours
+            </label>
+        </div>
+        <div class="radio">
+          <label>
+              <input type="radio" name="question1" value="12" [(ngModel)]="ovenHours"/> More than 10 hours
+            </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="row">
+      <button class="btn btn-primary" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Confirm</button>
+    </div>
+
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
