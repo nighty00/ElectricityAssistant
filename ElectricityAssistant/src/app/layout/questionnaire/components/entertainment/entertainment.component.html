@@ -1,37 +1,41 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center parent-div">
   <div class="col-md-6">
 
+    <div class="row">
+        <h1>Entertainment section</h1>
+    </div>
+    <hr/>
     <!-- Question 1: What is the size of your most frequently used TV?-->
     <div class="row">
       <fieldset class="form-group">
-        <label>Choose the size of your most frequently used TV?</label>
+        <label class="question">Choose the size of your most frequently used TV?</label>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question1" value="26 inch" [(ngModel)]="screenSize"> Below 26 inch
             </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question1" value="32 inch" [(ngModel)]="screenSize"> 27~32 inch
             </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question1" value="42 inch" [(ngModel)]="screenSize"> 33~42 inch
             </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question1" value="47 inch" [(ngModel)]="screenSize"> 43~47 inch
             </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
               <input type="radio" name="question1" value="55 inch" [(ngModel)]="screenSize"> 48~55 inch
             </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question1" value="60 inch" [(ngModel)]="screenSize"> above 56 inch
             </label>
         </div>
@@ -41,19 +45,19 @@
     <!-- Question 2 What is the energy rating of the TV? -->
     <div class="row">
       <fieldset class="form-group">
-        <label>What is the energy rating of the TV?</label>
+        <label class="question">What is the energy rating of the TV?</label>
         <div class="radio">
-          <label>
+          <label class="choice">
             <input type="radio" name="question2" value="2" [(ngModel)]="starRating"> 1~2 stars
         </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
             <input type="radio" name="question2" value="4" [(ngModel)]="starRating"> 3~4 stars
         </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
             <input type="radio" name="question2" value="6" [(ngModel)]="starRating"> 5~6 stars
         </label>
         </div>
@@ -63,19 +67,19 @@
     <!-- Question 3 How long do you spend on watching TV per day? -->
     <div class="row">
       <fieldset class="form-group">
-        <label>How long do you spend on watching TV per day?</label>
+        <label class="question">How long do you spend on watching TV per day?</label>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question3" value="2 hours" [(ngModel)]="usingTime"> Within 2 hours
             </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question3" value="4 hours" [(ngModel)]="usingTime"> Around 4 hours
             </label>
         </div>
         <div class="radio">
-          <label>
+          <label class="choice">
                 <input type="radio" name="question3" value="8 hours" [(ngModel)]="usingTime"> 8 hours or more
             </label>
         </div>
@@ -101,7 +105,3 @@
 
   </div>
 </div>
-
-<br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>

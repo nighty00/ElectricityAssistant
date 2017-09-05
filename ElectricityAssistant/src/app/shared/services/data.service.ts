@@ -16,22 +16,36 @@ export class DataService {
     ];
 
     //*************** heating.component **********************
+    heatDaysOfUsing: string = "160";
     heatType: string = "Gas heater";
-    heatNumberOfHeaters: number;
+    heatNumberOfHeaters: string = "1";
     heatPowerOfHeater: string = "1";
-    // heatBrandOfAC: string;
-    // heatModelOfAC: string;
-    // heatPowerOfAC: number;
+    heatHoursOfUsing: string = "2";
+    heatKnowBrand: string = "yes";
+    heatBrand: string;
+    heatModel: string;
+    heatBrandList: string[];
+    heatModelList: string[];
+    heatPower: number;
+    heatRating: number;
     heatStarsOfAC: string = "2";
     heatSizeOfRoom: string = "small";
-    heatHoursOfUsing: string = "2";
+    
     heatTotalUsage: number;
 
     //*************** cooling.component **********************
     coolTotalUsage: number;
     coolType: string = "portable fan";
+    coolKnowBrand: string = "yes";
     coolEnergyRating: string = "2";
     coolSpaceSize: string = "small";
+    coolTemperature: string = "25";
+    coolBrand: string;
+    coolModel: string;
+    coolBrandList: string[];
+    coolModelList: string[];
+    coolACPower: number;
+    coolACRating: number;
 
     //*************** entertainment.component ****************
     entertainmentTotalUsage: number;
@@ -45,16 +59,34 @@ export class DataService {
     lightNumberOfLights: number;
     lightPowerOfLights: string = "0.1";
     lightSwitchOff: string = "0.9";
-    lightSleepTime: string = "130";
+    lightSleepTime: string = "yes";
 
     //*************** laundry.component **********************
     laundryTotalUsage: number;
+    laundryWashingTotalUsage: number;
+    laundryDryTotalUsage: number;
+
+    laundryWashingKnow: string = "yes";
+    laundryWashingBrand: string;
+    laundryWashingModel: string;
+    laundryWashingBrandList: string[];
+    laundryWashingModelList: string[];
     laundryWashingRating: string = "1";
     laundryWashingCapacity: string = "5kg";
-    laundryWashingFT: string = "Top";
-    laundryDryType: string = "Heat pump";
+    laundryWashingLoadingType: string = "Top";
+    laundryWashingFrequency: string = "1";
+    laundryWashingPower: number;
+    laundryWashingStarRating: number;
+    laundryDryKnow: string = "yes";
+    laundryDryBrand: string;
+    laundryDryModel: string;
+    laundryDryBrandList: string[];
+    laundryDryModelList: string[];
+    laundryDryType: string = "heat pump";
     laundryDryCapacity: string = "4kg";
-    laundryDryTimes: string = "1";
+    laundryDryFrequency: string = "1";
+    laundryDryPower: number;
+    laundryDryStarRating: number;
 
     //*************** kitchen.component **********************
     kitchenTotalUsage: number;

@@ -70,7 +70,10 @@
     </div>
   </div>
   <div class="col-md-5">
-    <h1 *ngIf="showCharts">Total CO<sub>2</sub> emission: {{totalCo2Emission | number: '.1-2'}}kg/year</h1>
+    <h1 *ngIf="showCharts">Total CO<sub>2</sub> emission: <span style="color: red">{{totalCo2Emission | number: '.1-2'}}</span>kg per year</h1>
+    <h1 *ngIf="showCharts">
+      It takes <span style="color: green">{{totalCo2Emission / 18.6 | number: '.1-2'}}</span> trees to absorb your CO<sub>2</sub> emission for whole year.
+    </h1>
     <img class="img-fluid" src="../../../assets/images/tree.jpg" />
   </div>
 

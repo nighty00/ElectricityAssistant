@@ -1,5 +1,7 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
+import { RestfulService } from '../../../../shared/services/restful.service';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-laundry',
@@ -29,25 +31,60 @@ import { DataService } from '../../../../shared/services/data.service';
 })
 export class LaundryComponent implements OnInit {
 
-  totalUsage: number;
-  washingRating: string;
+  //ngModel
+  washingKnow: string;
+  washingBrand: string;
+  washingModel: string;
   washingCapacity: string;
-  washingFT: string;
+  washingLoadingType: string;
+  washingRating: string;
+  washingFrequency: string;
+  washingBrandList: string[];
+  washingModelList: string[];
+  washingPower: number;
+  washingStarRating: number;
   washingEnergyConsumptionArray: { capacity: string, loading: string, rating: string, consumption: number }[];
+
+  dryKnow: string;
+  dryBrand: string;
+  dryModel: string;
+  dryBrandList: string[];
+  dryModelList: string[];
   dryType: string;
   dryCapacity: string;
-  dryTimes: string;
-  dryEnergyConsumptionArrar: { capacity: string, times: string, consumption: number }[];
+  dryFrequency: string;
+  dryPower: number;
+  dryStarRating: number;
+  dryEnergyConsumptionArrar: { type: string, capacity: string, times: string, consumption: number }[];
 
-  constructor(private dataService: DataService) { }
+  washingTotalUsage: number;
+  dryTotalUsage: number;
+  totalUsage: number;
+
+  constructor(private dataService: DataService, private restfulService: RestfulService) { }
 
   ngOnInit() {
+    this.washingKnow = this.dataService.laundryWashingKnow;
+    this.washingBrand = this.dataService.laundryWashingBrand;
+    this.washingModel = this.dataService.laundryWashingModel;
+    this.washingBrandList = this.dataService.laundryWashingBrandList;
+    this.washingModelList = this.dataService.laundryWashingModelList;
     this.washingCapacity = this.dataService.laundryWashingCapacity;
-    this.washingFT = this.dataService.laundryWashingFT;
+    this.washingLoadingType = this.dataService.laundryWashingLoadingType;
     this.washingRating = this.dataService.laundryWashingRating;
+    this.washingFrequency = this.dataService.laundryWashingFrequency;
+    this.washingPower = this.dataService.laundryWashingPower;
+    this.washingStarRating = this.dataService.laundryWashingStarRating;
+    this.dryKnow = this.dataService.laundryDryKnow;
+    this.dryBrand = this.dataService.laundryDryBrand;
+    this.dryModel = this.dataService.laundryDryModel;
+    this.dryBrandList = this.dataService.laundryDryBrandList;
+    this.dryModelList = this.dataService.laundryDryModelList;
     this.dryType = this.dataService.laundryDryType;
     this.dryCapacity = this.dataService.laundryDryCapacity;
-    this.dryTimes = this.dataService.laundryDryTimes;
+    this.dryFrequency = this.dataService.laundryDryFrequency;
+    this.dryPower = this.dataService.laundryDryPower;
+    this.dryStarRating = this.dataService.laundryDryStarRating;
     this.washingEnergyConsumptionArray = [
       { capacity: "5kg", loading: "Top", rating: "1", consumption: 40 },
       { capacity: "5kg", loading: "Top", rating: "2", consumption: 40 },
@@ -69,61 +106,262 @@ export class LaundryComponent implements OnInit {
       { capacity: "8.5kg", loading: "Front", rating: "3", consumption: 100 }
     ]
     this.dryEnergyConsumptionArrar = [
-      { capacity: "4kg", times: "1", consumption: 200 },
-      { capacity: "4kg", times: "1.5", consumption: 300 },
-      { capacity: "4kg", times: "3", consumption: 600 },
-      { capacity: "4kg", times: "5", consumption: 1000 },
-      { capacity: "6kg", times: "1", consumption: 250 },
-      { capacity: "6kg", times: "1.5", consumption: 375 },
-      { capacity: "6kg", times: "3", consumption: 750 },
-      { capacity: "6kg", times: "5", consumption: 1250 },
-      { capacity: "8kg", times: "1", consumption: 300 },
-      { capacity: "8kg", times: "1.5", consumption: 300 },
-      { capacity: "8kg", times: "3", consumption: 900 },
-      { capacity: "8kg", times: "5", consumption: 1500 },
+      { type: "standard electric", capacity: "4kg", times: "1", consumption: 200 },
+      { type: "standard electric", capacity: "4kg", times: "1.5", consumption: 300 },
+      { type: "standard electric", capacity: "4kg", times: "3", consumption: 600 },
+      { type: "standard electric", capacity: "4kg", times: "5", consumption: 1000 },
+      { type: "standard electric", capacity: "6kg", times: "1", consumption: 250 },
+      { type: "standard electric", capacity: "6kg", times: "1.5", consumption: 375 },
+      { type: "standard electric", capacity: "6kg", times: "3", consumption: 750 },
+      { type: "standard electric", capacity: "6kg", times: "5", consumption: 1250 },
+      { type: "standard electric", capacity: "8kg", times: "1", consumption: 300 },
+      { type: "standard electric", capacity: "8kg", times: "1.5", consumption: 300 },
+      { type: "standard electric", capacity: "8kg", times: "3", consumption: 900 },
+      { type: "standard electric", capacity: "8kg", times: "5", consumption: 1500 },
+      { type: "heat pump", capacity: "4kg", times: "1", consumption: 90 },
+      { type: "heat pump", capacity: "4kg", times: "1.5", consumption: 130 },
+      { type: "heat pump", capacity: "4kg", times: "3", consumption: 250 },
+      { type: "heat pump", capacity: "4kg", times: "5", consumption: 415 },
+      { type: "heat pump", capacity: "6kg", times: "1", consumption: 110 },
+      { type: "heat pump", capacity: "6kg", times: "1.5", consumption: 160 },
+      { type: "heat pump", capacity: "6kg", times: "3", consumption: 310 },
+      { type: "heat pump", capacity: "6kg", times: "5", consumption: 515 },
+      { type: "heat pump", capacity: "8kg", times: "1", consumption: 125 },
+      { type: "heat pump", capacity: "8kg", times: "1.5", consumption: 200 },
+      { type: "heat pump", capacity: "8kg", times: "3", consumption: 375 },
+      { type: "heat pump", capacity: "8kg", times: "5", consumption: 610 },
     ]
+
+    //load brand list
+    this.loadWashingBrandList();
+    this.loadDryerBrandList();
   }
 
-  //state for display questions
-  public question5State: string;
-  public question6State: string;
-
-  public onQ41Click(): void {
-    this.question5State = "";
-    this.question6State = "";
+  /**
+   * states for showing questions
+   */
+  showQuestion2(): boolean {
+    return this.washingKnow == "yes";
   }
 
-  public onQ42Click(): void {
-    this.question5State = "show";
-    this.question6State = "show";
+  showQuestion3(): boolean {
+    return this.washingKnow == "no";
   }
 
-  public onQ43Click(): void {
-    this.question5State = "";
-    this.question6State = "";
+  showQuestion4(): boolean {
+    return this.washingKnow == "no";
+  }
+
+  showQuestion5(): boolean {
+    return this.washingKnow == "no";
+  }
+
+  showQuestion6(): boolean {
+    return this.washingKnow == "yes";
+  }
+
+  showQuestion8(): boolean {
+    return this.dryKnow == "yes";
+  }
+
+  showQuestion9(): boolean {
+    return this.dryKnow == "no";
+  }
+
+  showQuestion10(): boolean {
+    return this.dryKnow == "no";
+  }
+
+  showQuestion11(): boolean {
+    return this.dryKnow == "yes" || this.dryKnow == "no";
+  }
+
+  /**
+   * http request
+   */
+  loadWashingBrandList(): void {
+    this.restfulService.getWashingBrandList()
+      .subscribe(
+      (response: Response) => {
+        const data: any = response.json();
+        const brands: string[] = (data.BrandName + "").split(",");
+        brands.pop();
+        this.washingBrandList = brands;
+      },
+      (error) => console.log(error)
+      );
+  }
+
+  loadWashingModelList(): void {
+    this.restfulService.getWashingModelList(this.washingBrand)
+      .subscribe(
+        (response: Response) => {
+          const data: any = response.json();
+          const models: string[] = (data.ModelName + "").split(",");
+          models.pop();
+          this.washingModelList = models;
+          this.washingModel = this.washingModelList[0];
+          this.getWashingPowerRating();
+        },
+        (error) => console.log(error)
+      );
+  }
+
+  getWashingPowerRating(): void {
+    this.restfulService.getWashingPowerRating(this.washingModel)
+    .subscribe(
+    (response: Response) => {
+      const data: any = response.json();
+      const power: number = data.power;
+      const rating: number = data.star;
+      this.washingPower = power;
+      this.washingStarRating = rating;
+    }
+    );
+  }
+
+  loadDryerBrandList(): void {
+    this.restfulService.getDryerBrandList()
+      .subscribe(
+      (response: Response) => {
+        const data: any = response.json();
+        const brands: string[] = (data.BrandName + "").split(",");
+        brands.pop();
+        this.dryBrandList = brands;
+      },
+      (error) => console.log(error)
+      );
+  }
+
+  loadDryerModelList(): void {
+    this.restfulService.getDryerModelList(this.dryBrand)
+      .subscribe(
+        (response: Response) => {
+          const data: any = response.json();
+          const models: string[] = (data.ModelName + "").split(",");
+          models.pop();
+          this.dryModelList = models;
+          this.dryModel = this.dryModelList[0];
+          this.getDryerPowerRating();
+        },
+        (error) => console.log(error)
+      );
+  }
+
+  getDryerPowerRating(): void {
+    this.restfulService.getWashingPowerRating(this.dryModel)
+    .subscribe(
+    (response: Response) => {
+      const data: any = response.json();
+      const power: number = data.power;
+      const rating: number = data.star;
+      this.dryPower = power;
+      this.dryStarRating = rating;
+    }
+    );
+  }
+
+  /**
+   * event listener
+   */
+  public onWashingBrandSelected(event: any): void {
+    this.washingBrand = event.srcElement.value;
+    this.loadWashingModelList();
+  }
+
+  public onWashingModelSelected(event: any): void {
+    this.washingModel = event.srcElement.value;
+    this.getWashingPowerRating();
+  }
+
+  public onDryBrandSelected(event: any): void {
+    this.washingBrand = event.srcElement.value;
+    this.loadDryerModelList();
+  }
+
+  public onDryModelSelected(event: any): void {
+    this.washingModel = event.srcElement.value;
+    this.getDryerPowerRating();
   }
 
   public submit(): void {
     for (var i = 0; i < this.washingEnergyConsumptionArray.length; i++) {
       if (this.washingEnergyConsumptionArray[i].capacity == this.washingCapacity
-        && this.washingEnergyConsumptionArray[i].loading == this.washingFT
+        && this.washingEnergyConsumptionArray[i].loading == this.washingLoadingType
         && this.washingEnergyConsumptionArray[i].rating == this.washingRating) {
-          this.totalUsage = this.washingEnergyConsumptionArray[i].consumption;
+        this.totalUsage = this.washingEnergyConsumptionArray[i].consumption;
       }
     }
     for (var i = 0; i < this.dryEnergyConsumptionArrar.length; i++) {
       if (this.dryEnergyConsumptionArrar[i].capacity == this.dryCapacity
-        && this.dryEnergyConsumptionArrar[i].times == this.dryTimes) {
-          this.totalUsage += this.dryEnergyConsumptionArrar[i].consumption;
+        && this.dryEnergyConsumptionArrar[i].times == this.dryFrequency) {
+        this.totalUsage += this.dryEnergyConsumptionArrar[i].consumption;
       }
     }
+
+    //total usage of washing machine
+    if(this.showQuestion2()) {
+      this.washingTotalUsage = this.washingPower * Number.parseFloat(this.washingFrequency) / 7.0;
+    }
+    else {
+      for (var i = 0; i < this.washingEnergyConsumptionArray.length; i++) {
+        if (this.washingEnergyConsumptionArray[i].capacity == this.washingCapacity
+          && this.washingEnergyConsumptionArray[i].loading == this.washingLoadingType
+          && this.washingEnergyConsumptionArray[i].rating == this.washingRating) {
+          this.washingTotalUsage = this.washingEnergyConsumptionArray[i].consumption;
+        }
+      }
+    }
+
+    //total usage of clothes dryer
+    if(this.showQuestion11()) {
+      if(this.showQuestion8()) {
+        this.dryTotalUsage = this.dryPower * Number.parseFloat(this.dryFrequency);
+      }
+      else {
+        for (var i = 0; i < this.dryEnergyConsumptionArrar.length; i++) {
+          if (this.dryEnergyConsumptionArrar[i].capacity == this.dryCapacity
+            && this.dryEnergyConsumptionArrar[i].times == this.dryFrequency
+            && this.dryEnergyConsumptionArrar[i].type == this.dryType) {
+            this.dryTotalUsage = this.dryEnergyConsumptionArrar[i].consumption;
+          }
+        }
+      }
+    }
+    else {
+      this.dryTotalUsage = 0;
+    }
+    this.totalUsage = this.washingTotalUsage + this.dryTotalUsage;
+
+    //store data in dataService
+    this.dataService.laundryWashingKnow = this.washingKnow;
+    this.dataService.laundryWashingBrand = this.washingBrand;
+    this.dataService.laundryWashingModel = this.washingModel;
+    this.dataService.laundryWashingBrandList = this.washingBrandList;
+    this.dataService.laundryWashingModelList = this.washingModelList;
     this.dataService.laundryWashingCapacity = this.washingCapacity;
-    this.dataService.laundryWashingFT = this.washingFT;
+    this.dataService.laundryWashingLoadingType = this.washingLoadingType;
     this.dataService.laundryWashingRating = this.washingRating;
+    this.dataService.laundryWashingFrequency = this.washingFrequency;
+    this.dataService.laundryWashingPower = this.washingPower;
+    this.dataService.laundryWashingStarRating = this.washingStarRating;
+    this.dataService.laundryDryKnow = this.dryKnow;
+    this.dataService.laundryDryBrand = this.dryBrand;
+    this.dataService.laundryDryModel = this.dryModel;
+    this.dataService.laundryDryBrandList = this.dryBrandList;
+    this.dataService.laundryDryModelList = this.dryModelList;
     this.dataService.laundryDryType = this.dryType;
     this.dataService.laundryDryCapacity = this.dryCapacity;
-    this.dataService.laundryDryTimes = this.dryTimes;
+    this.dataService.laundryDryFrequency = this.dryFrequency;
+    this.dataService.laundryDryPower = this.dryPower;
+    this.dataService.laundryDryStarRating = this.dryStarRating;
+
+    this.dataService.laundryWashingTotalUsage = this.washingTotalUsage;
+    this.dataService.laundryDryTotalUsage = this.dryTotalUsage;
     this.dataService.laundryTotalUsage = this.totalUsage;
+    
+    console.log(this.dataService.laundryWashingTotalUsage);
+    console.log(this.dataService.laundryDryTotalUsage);
     console.log(this.dataService.laundryTotalUsage);
   }
 }

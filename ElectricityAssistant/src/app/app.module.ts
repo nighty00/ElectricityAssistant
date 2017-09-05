@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { DataService } from './shared/services/data.service';
+import { RestfulService } from './shared/services/restful.service'; 
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: Http) {
@@ -34,7 +35,7 @@ export function HttpLoaderFactory(http: Http) {
             }
         })
     ],
-    providers: [AuthGuard, DataService],
+    providers: [AuthGuard, DataService, RestfulService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

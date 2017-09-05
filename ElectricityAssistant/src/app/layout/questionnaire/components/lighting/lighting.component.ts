@@ -29,10 +29,6 @@ import { DataService } from '../../../../shared/services/data.service';
 })
 export class LightingComponent implements OnInit {
 
-  //state for display questions
-  public question2State: string;
-  public question3State: string;
-
   //ngModel
   public totalUsage: number;
   public halogenLight: string;
@@ -52,23 +48,17 @@ export class LightingComponent implements OnInit {
     this.sleepTime = this.dataService.lightSleepTime;
   }
 
-  public onQ1YesClick(): void {
-    this.question2State = "show";
-    this.question3State = "show";
-  }
-
-  public onQ1NoClick(): void {
-    this.question2State = "";
-    this.question3State = "";
-  }
-
   public submit(): void {
     if (this.halogenLight == "Yes") {
-      this.totalUsage = (this.numberOfLights * Number.parseFloat(this.powerOfLights) * 36 * 52
-        + 0.1 * 36 * 52) * Number.parseFloat(this.switchOff) + 0.05 * 49 * 52;
+      var usageOfHalogen = this.numberOfLights * Number.parseFloat(this.powerOfLights);
+      var usageOfLED = (usageOfHalogen > 0.2) ? 0 : (0.2 - usageOfHalogen) / 4;
+      this.totalUsage = (usageOfHalogen + usageOfLED) * 36 * 52 * Number.parseFloat(this.switchOff);
     }
     else {
-      this.totalUsage = 0.1 * 36 * 52 * Number.parseFloat(this.switchOff) + 0.05 * 49 * 52;
+      this.totalUsage = 0.05 * 36 * 52 * Number.parseFloat(this.switchOff);
+    }
+    if (this.sleepTime == "yes") {
+      this.totalUsage += 50;
     }
     this.dataService.lightHalogenLight = this.halogenLight;
     this.dataService.lightNumberOfLights = this.numberOfLights;
@@ -76,5 +66,6 @@ export class LightingComponent implements OnInit {
     this.dataService.lightSwitchOff = this.switchOff;
     this.dataService.lightSleepTime = this.sleepTime;
     this.dataService.lightTotalUsage = this.totalUsage;
+    console.log(this.dataService.lightTotalUsage);
   }
 }

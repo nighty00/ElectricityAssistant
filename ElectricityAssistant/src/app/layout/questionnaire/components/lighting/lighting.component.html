@@ -1,38 +1,40 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center parent-div">
   <div class="col-md-6">
 
+    <div class="row">
+      <h1>Lighting section</h1>
+    </div>
+    <hr/>
     <!-- Question 1: Are you using any HALOGEN lights in your home?-->
     <div class="row">
       <fieldset class="form-group">
-        <label>Are you using any halogen lights in your home?</label>
+        <label class="question">Are you using any halogen lights in your home?</label>
         <div class="radio">
           <label>
-                <input type="radio" name="question1" value="Yes" (click)="onQ1YesClick()" 
-                  [(ngModel)]="halogenLight"> Yes
+                <input type="radio" name="question1" value="Yes" [(ngModel)]="halogenLight"> Yes
             </label>
         </div>
         <div class="radio">
           <label>
-                <input type="radio" name="question1" value="No" (click)="onQ1NoClick()" 
-                  [(ngModel)]="halogenLight"> No
+                <input type="radio" name="question1" value="No" [(ngModel)]="halogenLight"> No
             </label>
         </div>
       </fieldset>
     </div>
 
-    <!-- Question 2 Approximately how many halogen lights are you using in your home?-->
-    <div class="row" *ngIf="halogenLight == 'Yes'" [@questionShowUp]=question2State>
+    <!-- Question 2 Approximately how many halogen lights are you using frequently in your home?-->
+    <div class="row" *ngIf="halogenLight == 'Yes'" [@questionShowUp]>
       <fieldset class="form-group">
-        <label>Approximately how many halogen lights are you now using in your home?</label>
+        <label class="question">Approximately how many halogen lights are you now using frequently in your home?</label>
         <input class="form-control" type="number" placeholder="number of halogen lights" maxlength="2" [(ngModel)]="numberOfLights"
         />
       </fieldset>
     </div>
 
     <!-- Question 3 How bright are those halogen lights? -->
-    <div class="row" *ngIf="halogenLight == 'Yes'" [@questionShowUp]=question3State>
+    <div class="row" *ngIf="halogenLight == 'Yes'" [@questionShowUp]>
       <fieldset class="form-group">
-        <label>How bright are those halogen lights?</label>
+        <label class="question">How bright are those halogen lights?</label>
         <div class="radio">
           <label>
                 <input type="radio" name="question3" value="0.1" [(ngModel)]="powerOfLights"> Very bright
@@ -54,7 +56,7 @@
     <!-- Question 4: Do you have habit of leaving the lights on in the room that you are not using?-->
     <div class="row">
       <fieldset class="form-group">
-        <label>Do you have habit of leaving the lights on in the room that you are not using?</label>
+        <label class="question">Do you have habit of leaving the lights on in the room that you are not using?</label>
         <div class="radio">
           <label>
                 <input type="radio" name="question4" value="0.9" [(ngModel)]="switchOff"> Yes
@@ -71,15 +73,15 @@
     <!-- Question 5: Do you leave the lights on when you are sleeping?-->
     <div class="row">
       <fieldset class="form-group">
-        <label>Do you leave the lights on when you are sleeping?</label>
+        <label class="question">Do you leave the lights on when you are sleeping?</label>
         <div class="radio">
           <label>
-              <input type="radio" name="question5" value="130" [(ngModel)]="sleepTime"> Yes
+              <input type="radio" name="question5" value="yes" [(ngModel)]="sleepTime"> Yes
             </label>
         </div>
         <div class="radio">
           <label>
-              <input type="radio" name="question5" value="0" [(ngModel)]="sleepTime"> No
+              <input type="radio" name="question5" value="no" [(ngModel)]="sleepTime"> No
             </label>
         </div>
       </fieldset>
