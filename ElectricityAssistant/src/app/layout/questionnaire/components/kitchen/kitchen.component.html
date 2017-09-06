@@ -5,24 +5,285 @@
       <h1>Kitchen section</h1>
     </div>
     <hr/>
-    <!-- Question 1 How many hours do you use oven per week? -->
+    <!-- Question 1 Do you know the brand and model of your refrigerator? -->
     <div class="row">
       <fieldset class="form-group">
-        <label>How many hours do you use oven per week?</label>
+        <label class="question">Do you know the brand and model of your refrigerator?</label>
         <div class="radio">
           <label>
-              <input type="radio" name="question1" value="3" [(ngModel)]="ovenHours"/> Less than 5 hours
-            </label>
+            <input type="radio" name="question1" value="yes" [(ngModel)]="knowFridgeBrand"> Yes
+          </label>
         </div>
         <div class="radio">
           <label>
-              <input type="radio" name="question1" value="8" [(ngModel)]="ovenHours"/> Less than 10 hours
-            </label>
+            <input type="radio" name="question1" value="no" [(ngModel)]="knowFridgeBrand"> No
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 2 Select the brand and model of your refrigerator. -->
+    <div class="row" *ngIf="showQuestion2()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">Select the brand and model of your refrigerator.</label>
+        <div class="row">
+          <div class="col-md-6">
+            <fieldset class="form-group">
+              <label>Select brand</label>
+              <div class="form-group">
+                <select class="form-control" [(ngModel)]="fridgeBrand" (change)="onFridgeBrandSelected($event)">
+                  <option *ngFor="let b of fridgeBrandList">{{b}}</option>
+                </select>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-md-6">
+            <fieldset class="form-group">
+              <label>Select model</label>
+              <div class="form-group">
+                <select class="form-control" [(ngModel)]="fridgeModel" (change)="onFridgeModelSelected($event)"> 
+                  <option *ngFor="let m of fridgeModelList">{{m}}</option>
+                </select>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 3 What is the energy rating of your refrigerator? -->
+    <div class="row" *ngIf="showQuestion3()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">What is the energy rating of your refrigerator?</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question3" value="1.5" [(ngModel)]="fridgeStars"> 1~2 stars
+          </label>
         </div>
         <div class="radio">
           <label>
-              <input type="radio" name="question1" value="12" [(ngModel)]="ovenHours"/> More than 10 hours
-            </label>
+            <input type="radio" name="question3" value="3.5" [(ngModel)]="fridgeStars"> 3~4 stars
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question3" value="5.5" [(ngModel)]="fridgeStars"> 5~6 stars
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 4 Select the type of your refrigerator. -->
+    <div class="row" *ngIf="showQuestion4()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">Select the type of your refrigerator.</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question4" value="2-door" [(ngModel)]="fridgeType"> 2-door frost free fridge
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question4" value="side-by-side" [(ngModel)]="fridgeType"> Side-by-Side
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question4" value="chest freezer" [(ngModel)]="fridgeType"> Chest Freezer
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question4" value="upright freezer" [(ngModel)]="fridgeType"> Upright freezer
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 5 Select the volume of your refrigerator. -->
+    <div class="row" *ngIf="showQuestion5()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">Select the volume of your refrigerator.</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question5" value="small" [(ngModel)]="fridgeVolume"> 200 Litres
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question5" value="medium" [(ngModel)]="fridgeVolume"> 350 Litres
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question5" value="large" [(ngModel)]="fridgeVolume"> 500 Litres
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 6 Select the volume of your refrigerator. -->
+    <div class="row" *ngIf="showQuestion6()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">Select the volume of your refrigerator.</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question6" value="small" [(ngModel)]="fridgeVolume"> 600 Litres
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question6" value="large" [(ngModel)]="fridgeVolume"> 700 Litres
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 7 Select the volume of your refrigerator. -->
+    <div class="row" *ngIf="showQuestion7()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">Select the volume of your refrigerator.</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question7" value="small" [(ngModel)]="fridgeVolume"> 150 Litres
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question7" value="large" [(ngModel)]="fridgeVolume"> 300 Litres
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 8 Select the volume of your refrigerator. -->
+    <div class="row" *ngIf="showQuestion8()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">Select the type of your refrigerator.</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question8" value="small" [(ngModel)]="fridgeVolume"> 250 Litres
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question8" value="large" [(ngModel)]="fridgeVolume"> 350 Litres
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 9 What is the temperature setting of your refrigerator. -->
+    <div class="row">
+      <fieldset class="form-group">
+        <label class="question">What is the temperature setting of your refrigerator.</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question9" value="3" [(ngModel)]="fridgeTemperature"> 3<sup>o</sup>C or below
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question9" value="4" [(ngModel)]="fridgeTemperature"> 4<sup>o</sup>C
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question9" value="5" [(ngModel)]="fridgeTemperature"> 5<sup>o</sup>C
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question9" value="6" [(ngModel)]="fridgeTemperature"> 6<sup>o</sup>C or above
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 10 Do you know use dishwasher or not? -->
+    <div class="row">
+      <fieldset class="form-group">
+        <label class="question">Do you know use dishwasher or not?</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question10" value="yes" [(ngModel)]="isUsingDish"> Yes
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question10" value="no" [(ngModel)]="isUsingDish"> No
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 11 Which load capacity setting of your dishwasher do you normally use? -->
+    <div class="row" *ngIf="showQuestion11()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">Which load capacity setting of your dishwasher do you normally use?</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question11" value="7" [(ngModel)]="dishCapacity"> 7 place setting
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question11" value="10" [(ngModel)]="dishCapacity"> 10 place setting
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question11" value="12" [(ngModel)]="dishCapacity"> 12 place setting
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question11" value="14" [(ngModel)]="dishCapacity"> 14 place setting
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 12 How often do you use dishwasher? -->
+    <div class="row" *ngIf="showQuestion12()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">How often do you use dishwasher?</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question12" value="1" [(ngModel)]="dishFrequency"> Once a week
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question12" value="2" [(ngModel)]="dishFrequency"> Twice a week
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question12" value="4" [(ngModel)]="dishFrequency"> 4 times a week
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question12" value="7" [(ngModel)]="dishFrequency"> Every day
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Question 13 What is the energy rating of your dishwasher? -->
+    <div class="row" *ngIf="showQuestion13()" [@questionShowUp]>
+      <fieldset class="form-group">
+        <label class="question">What is the energy rating of your dishwasher?</label>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question13" value="2" [(ngModel)]="dishRating"> 2 stars or lower
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="question13" value="4" [(ngModel)]="dishRating"> 3 stars or higher
+          </label>
         </div>
       </fieldset>
     </div>
@@ -33,6 +294,3 @@
 
   </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>

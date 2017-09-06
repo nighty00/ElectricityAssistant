@@ -89,12 +89,32 @@ export class DataService {
     laundryDryStarRating: number;
 
     //*************** kitchen.component **********************
+    kitchenKnowFridgeBrand: string = "yes";
+    kitchenFridgeBrand: string;
+    kitchenFridgeModel: string;
+    kitchenFridgeBrandList: string[];
+    kitchenFridgeModelList: string[];
+    kitchenFridgePower: number;
+    kitchenFridgeRating: number;
+    kitchenFridgeStars: string = "1.5";
+    kitchenFridgeType: string = "2-door";
+    kitchenFridgeVolume: string = "small";
+    kitchenFridgeTemperature: string = "3";
+    kitchenIsUsingDish: string = "no";
+    kitchenDishCapacity: string = "7";
+    kitchenDishFrequency: string = "1";
+    kitchenDishRating: string = "2";
+  
+    kitchenFridgeTotalUsage: number;
+    kitchenDishTotalUsage: number;
     kitchenTotalUsage: number;
-    kitchenOvenHours: string = "3";
 
     //*************** ReportPieChart **********************
     reportPieChartData: any[] = [1, 1, 1, 1, 1, 1];
-    
+    reportBarChartData: any[] = [
+        { data: [1, 0, 0, 0, 0, 0, 0, 0, 0], label: "annual usage" }
+    ]
+    totalSaving: number = 0;
 
     public setShowCharts(flag: boolean) {
         this.showCharts = flag;

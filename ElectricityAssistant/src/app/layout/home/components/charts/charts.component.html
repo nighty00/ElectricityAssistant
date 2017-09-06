@@ -72,7 +72,7 @@
   <div class="col-md-5">
     <h1 *ngIf="showCharts">Total CO<sub>2</sub> emission: <span style="color: red">{{totalCo2Emission | number: '.1-2'}}</span>kg per year</h1>
     <h1 *ngIf="showCharts">
-      It takes <span style="color: green">{{totalCo2Emission / 18.6 | number: '.1-2'}}</span> trees to absorb your CO<sub>2</sub> emission for whole year.
+      It takes <span style="color: green">{{totalCo2Emission / 18.6 | number: '.1-2'}}</span> trees to absorb your CO<sub>2</sub>      emission for whole year.
     </h1>
     <img class="img-fluid" src="../../../assets/images/tree.jpg" />
   </div>
@@ -92,10 +92,11 @@
 </div>
 
 <hr />
+<br/>
 
 <!-- blocks -->
 <div class="row justify-content-center" *ngIf="showCharts">
-  <h1>Choice</h1>
+  <h1>Complete the questionnaire</h1>
 </div>
 
 <div class="row justify-content-center" *ngIf="showCharts">
@@ -155,16 +156,88 @@
     </button>
   </div>
 </div>
+<!-- blocks -->
 
-<div class="row justify-content-center" *ngIf="showReport">
+<hr/><br>
+
+<!-- report -->
+<div class="row" *ngIf="showReport">
+  <div class="col-md-12 text-center">
+    <h1>Report</h1>
+  </div>
+</div>
+<div class="row" *ngIf="showReport">
   <div class="col-md-6">
-    <div class="card-header">
-      Distribution of your electricity usage
+    <div class="card mb-3">
+      <div class="card-header">
+        Distribution of your electricity usage
+      </div>
+      <div class="card-block">
+        <canvas baseChart height="150px" [data]="reportPieChartData" [labels]="reportPieChartLabels" [chartType]="reportPieChartType">
+        </canvas>
+      </div>
     </div>
-    <div class="card-block">
-      <canvas baseChart [data]="reportPieChartData" [labels]="reportPieChartLabels" [chartType]="reportPieChartType">
-      </canvas>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header">
+        Annual electricity consumption of the major household appliances in your home (kWh)
+      </div>
+      <div class="card-block">
+        <canvas baseChart [datasets]="reportBarChartData" [labels]="reportBarChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+          [chartType]="reportBarChartType">
+        </canvas>
+      </div>
     </div>
   </div>
 </div>
-<!-- blocks -->
+
+<div class="row justify-content-center" *ngIf="showReport">
+  <div class="col-md-12 text-center">
+    <h2>Tips for saving electricity</h2>
+  </div>
+  <div class="col-md-8">
+    <div class="form-group">
+      <label>Tick the box to use these tips</label>
+      <div class="checkbox">
+        <label class="tips">
+          <input type="checkbox" (change)="changeGeneralTips1($event)"> Competently turn off your electrical appliances such as TV, computer, microwave oven etc when you are not using them. 
+        </label>
+      </div>
+      <div class="checkbox" *ngIf="showWashingTips1()">
+        <label class="tips">
+          <input type="checkbox" (change)="changeWashingTips1($event)"> Every extra star could save you 25% of your washing machine’s energy use. Thus, we recommend you to switch to a 4-star rating washing machine. 
+        </label>
+      </div>
+      <div class="checkbox" *ngIf="showDryerTips1()">
+        <label class="tips">
+          <input type="checkbox" (change)="changeDryerTips1($event)"> Reduce the frequency of using clothes dryer to just once a week.
+        </label>
+      </div>
+      <div class="checkbox" *ngIf="showLightTips1()">
+        <label class="tips">
+          <input type="checkbox" (change)="changeLightTips1($event)"> Replacing all your halogen lights with LED or CFL lights
+        </label>
+      </div>
+      <div class="checkbox" *ngIf="showLightTips2()">
+        <label class="tips">
+          <input type="checkbox" (change)="changeLightTips2($event)"> Turn off the lights when sleeping
+        </label>
+      </div>
+      <div class="checkbox" *ngIf="showCoolTips1()">
+        <label class="tips">
+        <input type="checkbox" (change)="changeCoolTips1($event)"> Use the air-conditioner when the temperature reaches 30<sup>o</sup>C
+        </label>
+      </div>
+      <div class="checkbox" *ngIf="showHeatTips1()">
+        <label class="tips">
+          <input type="checkbox" (change)="changeHeatTips1($event)"> Use air-conditioner for heating instead of portable heater.
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <span>Total saving: {{totalSaving | number: '.1-2'}}kWh</span>
+  </div>
+</div>
+<!-- report -->

@@ -249,7 +249,7 @@ export class LaundryComponent implements OnInit {
   }
 
   getDryerPowerRating(): void {
-    this.restfulService.getWashingPowerRating(this.dryModel)
+    this.restfulService.getDryerPowerRating(this.dryModel)
     .subscribe(
     (response: Response) => {
       const data: any = response.json();
@@ -285,20 +285,6 @@ export class LaundryComponent implements OnInit {
   }
 
   public submit(): void {
-    for (var i = 0; i < this.washingEnergyConsumptionArray.length; i++) {
-      if (this.washingEnergyConsumptionArray[i].capacity == this.washingCapacity
-        && this.washingEnergyConsumptionArray[i].loading == this.washingLoadingType
-        && this.washingEnergyConsumptionArray[i].rating == this.washingRating) {
-        this.totalUsage = this.washingEnergyConsumptionArray[i].consumption;
-      }
-    }
-    for (var i = 0; i < this.dryEnergyConsumptionArrar.length; i++) {
-      if (this.dryEnergyConsumptionArrar[i].capacity == this.dryCapacity
-        && this.dryEnergyConsumptionArrar[i].times == this.dryFrequency) {
-        this.totalUsage += this.dryEnergyConsumptionArrar[i].consumption;
-      }
-    }
-
     //total usage of washing machine
     if(this.showQuestion2()) {
       this.washingTotalUsage = this.washingPower * Number.parseFloat(this.washingFrequency) / 7.0;
