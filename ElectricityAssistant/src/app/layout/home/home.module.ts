@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartsModule as Ng2Charts } from 'ng2-charts';
 import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
@@ -22,7 +21,6 @@ import { FormsModule } from '@angular/forms';
     HomeRoutingModule,
     Ng2Charts,
     PageHeaderModule,
-    Ng2PageScrollModule,
     FormsModule
   ],
   declarations: [HomeComponent, SlidersComponent, ChartsComponent, ContactComponent, BlocksComponent]

@@ -41,6 +41,7 @@ export class KitchenComponent implements OnInit {
   fridgeModelList: string[];
   fridgePower: number;
   fridgeRating: number;
+  fridgeVol: number;
   fridgeStars: string;
   fridgeType: string;
   fridgeVolume: string;
@@ -67,6 +68,7 @@ export class KitchenComponent implements OnInit {
     this.fridgeModelList = this.dataService.kitchenFridgeModelList;
     this.fridgePower = this.dataService.kitchenFridgePower;
     this.fridgeRating = this.dataService.kitchenFridgeRating;
+    this.fridgeVol = this.dataService.kitchenFridgeVol;
     this.fridgeStars = this.dataService.kitchenFridgeStars;
     this.fridgeType = this.dataService.kitchenFridgeType;
     this.fridgeVolume = this.dataService.kitchenFridgeVolume;
@@ -177,6 +179,10 @@ export class KitchenComponent implements OnInit {
         const brands: string[] = (data.BrandName + "").split(",");
         brands.pop();
         this.fridgeBrandList = brands;
+        if (this.fridgeBrand == null) {
+          this.fridgeBrand = this.fridgeBrandList[0];
+          this.loadFridgeModelList();
+        }
       },
       (error) => console.log(error)
       );
@@ -204,8 +210,11 @@ export class KitchenComponent implements OnInit {
         const data: any = response.json();
         const power: number = data.power;
         const rating: number = data.star;
+        const vol: number = data.vol;
         this.fridgePower = power;
         this.fridgeRating = rating;
+        this.fridgeVol = vol;
+        console.log("vol  " + this.fridgeVol);
       }
       );
   }
@@ -273,6 +282,7 @@ export class KitchenComponent implements OnInit {
     this.dataService.kitchenFridgePower = this.fridgePower;
     this.dataService.kitchenFridgeRating = this.fridgeRating;
     this.dataService.kitchenFridgeStars = this.fridgeStars;
+    this.dataService.kitchenFridgeVol = this.fridgeVol;
     this.dataService.kitchenFridgeType = this.fridgeType;
     this.dataService.kitchenFridgeVolume = this.fridgeVolume;
     this.dataService.kitchenFridgeTemperature = this.fridgeTemperature;

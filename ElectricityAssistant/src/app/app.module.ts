@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
@@ -27,6 +29,7 @@ export function HttpLoaderFactory(http: Http) {
         FormsModule,
         HttpModule,
         AppRoutingModule,
+        Ng2PageScrollModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

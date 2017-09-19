@@ -8,7 +8,7 @@
     <!-- Question 1 You will use heaters when the temperature is below -->
     <div class="row">
       <fieldset class="form-group">
-        <label class="question">You will use heating appliances when the temperature is below</label>
+        <label class="question">Generally, you use heating appliances when the temperature is below:</label>
         <div class="radio">
           <label>
             <input type="radio" name="question1" value="160" [(ngModel)]="daysOfUsing"/> 18<sup>o</sup>C
@@ -30,7 +30,7 @@
     <!-- Question 2 How long do you normally use heating appliances per day? -->
     <div class="row" [@questionShowUp]>
       <fieldset class="form-group">
-        <label class="question">How long do you normally use heating appliances per day?</label>
+        <label class="question">For how long do you normally use heating appliances per day during winters?</label>
         <div class="radio">
           <label>
             <input type="radio" name="question2" value="2" [(ngModel)]="hoursOfUsing" /> Less than 2 hours
@@ -57,7 +57,7 @@
     <!-- Question 3 Which household appliance do you most frequently use to heat your home? -->
     <div class="row">
       <fieldset class="form-group">
-        <label class="question">Which household appliance do you most frequently use to heat your home?</label>
+        <label class="question">Which household appliance do you frequently use to heat your home?</label>
         <div class="radio">
           <label>
             <input type="radio" name="question3" value="Gas heater" [(ngModel)]="type" /> Gas heater
@@ -79,7 +79,7 @@
     <!-- Question 4 How many electric heaters are you using? -->
     <div class="row" *ngIf="showQuestion4()" [@questionShowUp]>
       <fieldset class="form-group">
-        <label class="question">How many electric heaters are you using?</label>
+        <label class="question">How many electric heaters do you use during winters?</label>
         <div class="radio">
           <label>
             <input type="radio" name="question4" value="1" [(ngModel)]="numberOfHeaters" /> One
@@ -216,7 +216,10 @@
     </div>
 
     <div class="row">
-      <button class="btn btn-primary" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Confirm</button>
+      <div class="btn-group">
+        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/cooling']" [routerLinkActive]="['router-link-active']">Previous section</button>
+        <button class="btn btn-warning" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Back to home page</button>
+      </div>
     </div>
 
   </div>

@@ -127,6 +127,10 @@ export class HeatingComponent implements OnInit {
         const brands: string[] = (data.BrandName + "").split(",");
         brands.pop();
         this.brandList = brands;
+        if (this.brand == null) {
+          this.brand = this.brandList[0];
+          this.loadModelList();
+        }
       },
       (error) => console.log(error)
       );

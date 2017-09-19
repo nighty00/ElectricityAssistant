@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, trigger, state, style, transition, animate, AfterViewChecked } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
 import { RestfulService } from '../../../../shared/services/restful.service';
 import { Response } from '@angular/http';
@@ -43,6 +43,7 @@ export class LaundryComponent implements OnInit {
   washingModelList: string[];
   washingPower: number;
   washingStarRating: number;
+  washingCap: number;
   washingEnergyConsumptionArray: { capacity: string, loading: string, rating: string, consumption: number }[];
 
   dryKnow: string;
@@ -55,6 +56,7 @@ export class LaundryComponent implements OnInit {
   dryFrequency: string;
   dryPower: number;
   dryStarRating: number;
+  dryCap: number;
   dryEnergyConsumptionArrar: { type: string, capacity: string, times: string, consumption: number }[];
 
   washingTotalUsage: number;
@@ -64,6 +66,8 @@ export class LaundryComponent implements OnInit {
   constructor(private dataService: DataService, private restfulService: RestfulService) { }
 
   ngOnInit() {
+
+    //initialize data
     this.washingKnow = this.dataService.laundryWashingKnow;
     this.washingBrand = this.dataService.laundryWashingBrand;
     this.washingModel = this.dataService.laundryWashingModel;
@@ -75,6 +79,7 @@ export class LaundryComponent implements OnInit {
     this.washingFrequency = this.dataService.laundryWashingFrequency;
     this.washingPower = this.dataService.laundryWashingPower;
     this.washingStarRating = this.dataService.laundryWashingStarRating;
+    this.washingCap = this.dataService.laundryWashingCap;
     this.dryKnow = this.dataService.laundryDryKnow;
     this.dryBrand = this.dataService.laundryDryBrand;
     this.dryModel = this.dataService.laundryDryModel;
@@ -85,6 +90,7 @@ export class LaundryComponent implements OnInit {
     this.dryFrequency = this.dataService.laundryDryFrequency;
     this.dryPower = this.dataService.laundryDryPower;
     this.dryStarRating = this.dataService.laundryDryStarRating;
+    this.dryCap = this.dataService.laundryDryCap;
     this.washingEnergyConsumptionArray = [
       { capacity: "5kg", loading: "Top", rating: "1", consumption: 40 },
       { capacity: "5kg", loading: "Top", rating: "2", consumption: 40 },
@@ -187,6 +193,10 @@ export class LaundryComponent implements OnInit {
         const brands: string[] = (data.BrandName + "").split(",");
         brands.pop();
         this.washingBrandList = brands;
+        if (this.washingBrand == null) {
+          this.washingBrand = this.washingBrandList[0];
+          this.loadWashingModelList();
+        }
       },
       (error) => console.log(error)
       );
@@ -195,29 +205,32 @@ export class LaundryComponent implements OnInit {
   loadWashingModelList(): void {
     this.restfulService.getWashingModelList(this.washingBrand)
       .subscribe(
-        (response: Response) => {
-          const data: any = response.json();
-          const models: string[] = (data.ModelName + "").split(",");
-          models.pop();
-          this.washingModelList = models;
-          this.washingModel = this.washingModelList[0];
-          this.getWashingPowerRating();
-        },
-        (error) => console.log(error)
+      (response: Response) => {
+        const data: any = response.json();
+        const models: string[] = (data.ModelName + "").split(",");
+        models.pop();
+        this.washingModelList = models;
+        this.washingModel = this.washingModelList[0];
+        this.getWashingPowerRating();
+      },
+      (error) => console.log(error)
       );
   }
 
   getWashingPowerRating(): void {
     this.restfulService.getWashingPowerRating(this.washingModel)
-    .subscribe(
-    (response: Response) => {
-      const data: any = response.json();
-      const power: number = data.power;
-      const rating: number = data.star;
-      this.washingPower = power;
-      this.washingStarRating = rating;
-    }
-    );
+      .subscribe(
+      (response: Response) => {
+        const data: any = response.json();
+        const power: number = data.power;
+        const rating: number = data.star;
+        const cap: number = data.capacity;
+        this.washingPower = power;
+        this.washingStarRating = rating;
+        this.washingCap = cap;
+        // console.log("washing  " + cap);
+      }
+      );
   }
 
   loadDryerBrandList(): void {
@@ -228,6 +241,10 @@ export class LaundryComponent implements OnInit {
         const brands: string[] = (data.BrandName + "").split(",");
         brands.pop();
         this.dryBrandList = brands;
+        if (this.dryBrand == null) {
+          this.dryBrand = this.dryBrandList[0];
+          this.loadDryerModelList();
+        }
       },
       (error) => console.log(error)
       );
@@ -236,29 +253,32 @@ export class LaundryComponent implements OnInit {
   loadDryerModelList(): void {
     this.restfulService.getDryerModelList(this.dryBrand)
       .subscribe(
-        (response: Response) => {
-          const data: any = response.json();
-          const models: string[] = (data.ModelName + "").split(",");
-          models.pop();
-          this.dryModelList = models;
-          this.dryModel = this.dryModelList[0];
-          this.getDryerPowerRating();
-        },
-        (error) => console.log(error)
+      (response: Response) => {
+        const data: any = response.json();
+        const models: string[] = (data.ModelName + "").split(",");
+        models.pop();
+        this.dryModelList = models;
+        this.dryModel = this.dryModelList[0];
+        this.getDryerPowerRating();
+      },
+      (error) => console.log(error)
       );
   }
 
   getDryerPowerRating(): void {
     this.restfulService.getDryerPowerRating(this.dryModel)
-    .subscribe(
-    (response: Response) => {
-      const data: any = response.json();
-      const power: number = data.power;
-      const rating: number = data.star;
-      this.dryPower = power;
-      this.dryStarRating = rating;
-    }
-    );
+      .subscribe(
+      (response: Response) => {
+        const data: any = response.json();
+        const power: number = data.power;
+        const rating: number = data.star;
+        const cap: number = data.capacity;
+        this.dryPower = power;
+        this.dryStarRating = rating;
+        this.dryCap = cap;
+        // console.log("dry  " + cap);
+      }
+      );
   }
 
   /**
@@ -275,18 +295,18 @@ export class LaundryComponent implements OnInit {
   }
 
   public onDryBrandSelected(event: any): void {
-    this.washingBrand = event.srcElement.value;
+    this.dryBrand = event.srcElement.value;
     this.loadDryerModelList();
   }
 
   public onDryModelSelected(event: any): void {
-    this.washingModel = event.srcElement.value;
+    this.dryModel = event.srcElement.value;
     this.getDryerPowerRating();
   }
 
   public submit(): void {
     //total usage of washing machine
-    if(this.showQuestion2()) {
+    if (this.showQuestion2()) {
       this.washingTotalUsage = this.washingPower * Number.parseFloat(this.washingFrequency) / 7.0;
     }
     else {
@@ -300,8 +320,8 @@ export class LaundryComponent implements OnInit {
     }
 
     //total usage of clothes dryer
-    if(this.showQuestion11()) {
-      if(this.showQuestion8()) {
+    if (this.showQuestion11()) {
+      if (this.showQuestion8()) {
         this.dryTotalUsage = this.dryPower * Number.parseFloat(this.dryFrequency);
       }
       else {
@@ -331,6 +351,7 @@ export class LaundryComponent implements OnInit {
     this.dataService.laundryWashingFrequency = this.washingFrequency;
     this.dataService.laundryWashingPower = this.washingPower;
     this.dataService.laundryWashingStarRating = this.washingStarRating;
+    this.dataService.laundryWashingCap = this.washingCap;
     this.dataService.laundryDryKnow = this.dryKnow;
     this.dataService.laundryDryBrand = this.dryBrand;
     this.dataService.laundryDryModel = this.dryModel;
@@ -341,11 +362,12 @@ export class LaundryComponent implements OnInit {
     this.dataService.laundryDryFrequency = this.dryFrequency;
     this.dataService.laundryDryPower = this.dryPower;
     this.dataService.laundryDryStarRating = this.dryStarRating;
+    this.dataService.laundryDryCap = this.dryCap;
 
     this.dataService.laundryWashingTotalUsage = this.washingTotalUsage;
     this.dataService.laundryDryTotalUsage = this.dryTotalUsage;
     this.dataService.laundryTotalUsage = this.totalUsage;
-    
+
     console.log(this.dataService.laundryWashingTotalUsage);
     console.log(this.dataService.laundryDryTotalUsage);
     console.log(this.dataService.laundryTotalUsage);

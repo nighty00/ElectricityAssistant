@@ -30,7 +30,6 @@ import { Response } from '@angular/http';
   ]
 })
 export class CoolingComponent implements OnInit {
-
   //ngModel
   type: string;
   knowBrand: string;
@@ -50,6 +49,7 @@ export class CoolingComponent implements OnInit {
   constructor(private dataService: DataService, private restfulService: RestfulService) { }
 
   ngOnInit() {
+    //data binding
     this.type = this.dataService.coolType;
     this.knowBrand = this.dataService.coolKnowBrand;
     this.energyRating = this.dataService.coolEnergyRating;
@@ -130,6 +130,10 @@ export class CoolingComponent implements OnInit {
         const brands: string[] = (data.BrandName + "").split(",");
         brands.pop();
         this.brandList = brands;
+        if (this.brand == null) {
+          this.brand = this.brandList[0];
+          this.loadModelList();
+        }
       },
       (error) => console.log(error)
       );
@@ -219,7 +223,7 @@ export class CoolingComponent implements OnInit {
     this.dataService.coolModelList = this.modelList;
     this.dataService.coolACPower = this.acPower;
     this.dataService.coolACRating = this.acRating;
-    
+
     console.log(this.dataService.coolTotalUsage);
   }
 }

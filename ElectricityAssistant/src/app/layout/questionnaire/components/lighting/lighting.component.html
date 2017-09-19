@@ -8,7 +8,7 @@
     <!-- Question 1: Are you using any HALOGEN lights in your home?-->
     <div class="row">
       <fieldset class="form-group">
-        <label class="question">Are you using any halogen lights in your home?</label>
+        <label class="question">Are you using any halogen lights at your home?</label>
         <div class="radio">
           <label>
                 <input type="radio" name="question1" value="Yes" [(ngModel)]="halogenLight"> Yes
@@ -25,7 +25,7 @@
     <!-- Question 2 Approximately how many halogen lights are you using frequently in your home?-->
     <div class="row" *ngIf="halogenLight == 'Yes'" [@questionShowUp]>
       <fieldset class="form-group">
-        <label class="question">Approximately how many halogen lights are you now using frequently in your home?</label>
+        <label class="question">Approximately how many halogen lights do you use frequently at your home?</label>
         <input class="form-control" type="number" placeholder="number of halogen lights" maxlength="2" [(ngModel)]="numberOfLights"
         />
       </fieldset>
@@ -88,7 +88,11 @@
     </div>
 
     <div class="row">
-      <button class="btn btn-primary" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Confirm</button>
+      <div class="btn-group">
+        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/laundry']" [routerLinkActive]="['router-link-active']">Previous section</button>
+        <button class="btn btn-warning" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Back to home page</button>
+        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/cooling']" [routerLinkActive]="['router-link-active']">Next section</button>
+      </div>
     </div>
 
 
@@ -106,7 +110,3 @@
 
   </div>
 </div>
-
-<br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>

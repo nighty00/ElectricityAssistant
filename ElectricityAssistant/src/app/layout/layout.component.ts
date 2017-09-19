@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'app-layout',
@@ -14,6 +14,13 @@ export class LayoutComponent implements OnInit {
         if (this.router.url === '/') {
             this.router.navigate(['/home']);
         }
-    }
 
+        //subscribe fragment change
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            window.scrollTo(0, 0)
+        });
+    }
 }

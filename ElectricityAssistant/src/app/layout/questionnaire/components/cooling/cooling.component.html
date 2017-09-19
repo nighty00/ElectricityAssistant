@@ -129,7 +129,7 @@
     <!-- Question 6: What is the energy rating of your air conditioner?-->
     <div class="row" *ngIf="showQuestion6()" [@questionShowUp]>
       <fieldset class="form-group">
-        <label class="question">What is the energy rating of your air conditioner?</label>
+        <label class="question">What is the energy star rating of your air conditioner?</label>
         <div class="radio">
           <label>
                 <input type="radio" name="question6" value="2" [(ngModel)]="energyRating"> 1~3 stars
@@ -146,7 +146,7 @@
     <!-- Question 7: Your will use air-conditioner when the temperature is above -->
     <div class="row" *ngIf="showQuestion7()" [@questionShowUp]>
       <fieldset class="form-group">
-        <label class="question">Your will use air-conditioner when the temperature reaches</label>
+        <label class="question">Generally, when do you turn on your cooling appliances, when the temperature reaches:</label>
         <div class="radio">
           <label>
             <input type="radio" name="question7" value="25" [(ngModel)]="temperature"> 25<sup>o</sup>C or below
@@ -171,7 +171,11 @@
     </div>
 
     <div class="row">
-      <button class="btn btn-primary" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Confirm</button>
+      <div class="btn-group">
+        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/lighting']" [routerLinkActive]="['router-link-active']">Previous section</button>
+        <button class="btn btn-warning" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Back to home page</button>
+        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/heating']" [routerLinkActive]="['router-link-active']">Next section</button>
+      </div>
     </div>
 
 

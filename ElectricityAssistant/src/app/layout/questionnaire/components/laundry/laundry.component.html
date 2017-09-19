@@ -2,7 +2,7 @@
   <div class="col-md-6">
 
     <div class="row">
-      <h1>Laundry section</h1>
+      <h1><a name="parentDiv">Laundry section</a></h1>
     </div>
     <hr/>
     <!-- Question 1: Do you know the brand and model of your washing machine? -->
@@ -96,17 +96,17 @@
         <label class="question">What is the energy star rating of your washing machine?</label>
         <div class="radio">
           <label>
-            <input type="radio" name="question5" value="1" [(ngModel)]="washingRating"> 1 star
+            <input type="radio" name="question5" value="1" [(ngModel)]="washingRating"> lower than 2 stars
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="question5" value="2" [(ngModel)]="washingRating"> 2 stars
+            <input type="radio" name="question5" value="2" [(ngModel)]="washingRating"> 2~3.5 stars
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="question5" value="3" [(ngModel)]="washingRating"> more that 3 stars
+            <input type="radio" name="question5" value="3" [(ngModel)]="washingRating"> more that 4 stars
           </label>
         </div>
       </fieldset>
@@ -145,12 +145,12 @@
         <label class="question">Do you use clothes dryer? If you do, do you also know the brand and model of it?</label>
         <div class="radio">
           <label>
-            <input type="radio" name="question7" value="yes" [(ngModel)]="dryKnow"> I do use clothes dryer, and I also know its model.
+            <input type="radio" name="question7" value="yes" [(ngModel)]="dryKnow"> I use clothes dryer, and I also know its model.
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="question7" value="no" [(ngModel)]="dryKnow"> I do use clother dryer, but I am not sure about its model.
+            <input type="radio" name="question7" value="no" [(ngModel)]="dryKnow"> I use clother dryer, but I am not sure about its model.
           </label>
         </div>
         <div class="radio">
@@ -196,12 +196,12 @@
         <label class="question">What is the type of your clothes dryer?</label>
         <div class="radio">
           <label>
-            <input type="radio" name="question9" value="heat pump" [(ngModel)]="dryType"> Heat pump
+            <input type="radio" name="question9" value="heat pump" [(ngModel)]="dryType"> Heat pump / Condenser
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="question9" value="standard electric" [(ngModel)]="dryType"> Standard electric
+            <input type="radio" name="question9" value="standard electric" [(ngModel)]="dryType"> Standard electric / Vented
           </label>
         </div>
       </fieldset>
@@ -232,7 +232,7 @@
     <!-- Question 11: How many times do you use the clothes dryer per week on average?-->
     <div class="row" *ngIf="showQuestion11()" [@questionShowUp]>
       <fieldset class="form-group">
-        <label class="question">How many times do you use the clothes dryer per week on average?</label>
+        <label class="question">How often do you use clothes dryer per week on average?</label>
         <div class="radio">
           <label>
             <input type="radio" name="question11" value="1" [(ngModel)]="dryFrequency"> Once
@@ -257,7 +257,11 @@
     </div>
 
     <div class="row">
-      <button class="btn btn-primary" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Confirm</button>
+      <div class="btn-group">
+        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/kitchen']" [routerLinkActive]="['router-link-active']">Previous section</button>
+        <button class="btn btn-warning" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Back to home page</button>
+        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/lighting']" [routerLinkActive]="['router-link-active']">Next section</button>
+      </div>
     </div>
 
 

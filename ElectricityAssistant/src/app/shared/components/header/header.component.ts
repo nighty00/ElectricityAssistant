@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { PageScrollConfig, PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
+import { DataService } from '../../services/data.service';
 
 @Component({
     selector: 'app-header',
@@ -9,7 +11,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
 
-    constructor(private translate: TranslateService, public router: Router) {
+    showQuestionnaireBtn: boolean;
+    showReportBtn: boolean;
+
+    constructor(private translate: TranslateService, public router: Router,private dataService: DataService) {
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992) {
                 this.toggleSidebar();
@@ -17,7 +22,10 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.showQuestionnaireBtn = this.dataService.showCharts;
+        this.showReportBtn = this.dataService.showReport;
+    }
 
     toggleSidebar() {
         const dom: any = document.querySelector('body');
@@ -36,4 +44,8 @@ export class HeaderComponent implements OnInit {
     changeLang(language: string) {
         this.translate.use(language);
     }
+
+    // showContactUsBtn() {
+
+    // }
 }

@@ -5,22 +5,35 @@
         </button>
         <a class="navbar-brand" href="http://www.gcelectricityassistance.men">{{'GC Electricity Assistance' | translate}}</a>
         <div class="collapse navbar-collapse">
-            <form class="form-inline my-2 my-lg-0">
+            <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            </form>
+            </form> -->
             <ul class="navbar-nav ml-auto mt-2 mt-md-0">
                 <li class="nav-item hidden-lg-down">
-                    <a href="javascript:void(0)" class="nav-link btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Contact Us</a>
+                    <a [routerLink]="['/home']" class="nav-link btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Home</a>
                 </li> &nbsp;
+                <li class="nav-item hidden-lg-down" *ngIf="showQuestionnaireBtn">
+                    <a [routerLink]="['/questionnaire/kitchen']" class="nav-link btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Questionnaire</a>
+                </li> &nbsp;
+                <li class="nav-item hidden-lg-down" *ngIf="showReportBtn">
+                    <a [routerLink]="['/report']" class="nav-link btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Report</a>
+                </li> &nbsp;
+                <li class="nav-item hidden-lg-down" *ngIf="showReportBtn">
+                    <a [routerLink]="['/recommendation']" class="nav-link btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Recommendation</a>
+                </li> &nbsp;
+                <!-- <li class="nav-item hidden-lg-down">
+                    <a [routerLink]="['/home#contactUsPosition']" class="nav-link btn mt-1" role="button" style="padding: .375rem 1rem !important; border-color: #999;">Contact Us</a>
+                </li> &nbsp; -->
 
                 <!-- <div class="dropdown">-->
-                <li class="nav-item dropdown" ngbDropdown>
+                <!-- <li class="nav-item dropdown" ngbDropdown>
                     <a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
                         <i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right messages">
                         <li class="media">
-                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg"
+                                alt="Generic placeholder image">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">John Smith</h5>
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
@@ -28,7 +41,8 @@
                             </div>
                         </li>
                         <li class="media">
-                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg"
+                                alt="Generic placeholder image">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">John Smith</h5>
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
@@ -36,7 +50,8 @@
                             </div>
                         </li>
                         <li class="media">
-                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg" alt="Generic placeholder image">
+                            <img class="d-flex align-self-center mr-3" src="http://i.huffpost.com/gadgets/slideshows/461162/slide_461162_6224974_sq50.jpg"
+                                alt="Generic placeholder image">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">John Smith</h5>
                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
@@ -44,8 +59,8 @@
                             </div>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item dropdown" ngbDropdown>
+                </li> -->
+                <!-- <li class="nav-item dropdown" ngbDropdown>
                     <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
                         <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
                     </a>
@@ -78,7 +93,7 @@
                         <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>

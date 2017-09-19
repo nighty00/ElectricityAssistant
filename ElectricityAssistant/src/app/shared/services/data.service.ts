@@ -30,7 +30,7 @@ export class DataService {
     heatRating: number;
     heatStarsOfAC: string = "2";
     heatSizeOfRoom: string = "small";
-    
+
     heatTotalUsage: number;
 
     //*************** cooling.component **********************
@@ -52,10 +52,18 @@ export class DataService {
     entertainmentScreenSize: string = "26 inch";
     entertainmentStarRating: string = "2";
     entertainmentUsingTime: string = "2 hours";
+    entertainmentTvKnow: string = "no";
+    entertainmentBrand: string;
+    entertainmentModel: string;
+    entertainmentPower: number;
+    entertainmentStar: number;
+    entertainmentSize: number;
+    entertainmentBrandList: string[];
+    entertainmentModelList: string[];
 
     //*************** lighting.component **********************
     lightTotalUsage: number;
-    lightHalogenLight: string = "Yes";
+    lightHalogenLight: string = "No";
     lightNumberOfLights: number;
     lightPowerOfLights: string = "0.1";
     lightSwitchOff: string = "0.9";
@@ -66,7 +74,7 @@ export class DataService {
     laundryWashingTotalUsage: number;
     laundryDryTotalUsage: number;
 
-    laundryWashingKnow: string = "yes";
+    laundryWashingKnow: string = "no";
     laundryWashingBrand: string;
     laundryWashingModel: string;
     laundryWashingBrandList: string[];
@@ -77,25 +85,28 @@ export class DataService {
     laundryWashingFrequency: string = "1";
     laundryWashingPower: number;
     laundryWashingStarRating: number;
-    laundryDryKnow: string = "yes";
+    laundryWashingCap: number;
+    laundryDryKnow: string = "no";
     laundryDryBrand: string;
     laundryDryModel: string;
     laundryDryBrandList: string[];
     laundryDryModelList: string[];
-    laundryDryType: string = "heat pump";
+    laundryDryType: string = "standard electric";
     laundryDryCapacity: string = "4kg";
     laundryDryFrequency: string = "1";
     laundryDryPower: number;
     laundryDryStarRating: number;
+    laundryDryCap: number;
 
     //*************** kitchen.component **********************
-    kitchenKnowFridgeBrand: string = "yes";
+    kitchenKnowFridgeBrand: string = "no";
     kitchenFridgeBrand: string;
     kitchenFridgeModel: string;
     kitchenFridgeBrandList: string[];
     kitchenFridgeModelList: string[];
     kitchenFridgePower: number;
     kitchenFridgeRating: number;
+    kitchenFridgeVol: number;
     kitchenFridgeStars: string = "1.5";
     kitchenFridgeType: string = "2-door";
     kitchenFridgeVolume: string = "small";
@@ -104,17 +115,40 @@ export class DataService {
     kitchenDishCapacity: string = "7";
     kitchenDishFrequency: string = "1";
     kitchenDishRating: string = "2";
-  
+
     kitchenFridgeTotalUsage: number;
     kitchenDishTotalUsage: number;
     kitchenTotalUsage: number;
-
+    
     //*************** ReportPieChart **********************
     reportPieChartData: any[] = [1, 1, 1, 1, 1, 1];
     reportBarChartData: any[] = [
         { data: [1, 0, 0, 0, 0, 0, 0, 0, 0], label: "annual usage" }
     ]
+    reportPieChart2Data: any[] = [1, 1, 1, 1, 1, 1];
+    reportBarChart2Data: any[] = [
+        { data: [1, 0, 0, 0, 0, 0, 0, 0, 0], label: "annual usage" }
+    ]
+
     totalSaving: number = 0;
+
+    kitchenFridgeTotalUsageNew: number;
+    kitchenDishTotalUsageNew: number;
+    kitchenTotalUsageNew: number;
+    laundryTotalUsageNew: number;
+    laundryWashingTotalUsageNew: number;
+    laundryDryTotalUsageNew: number;
+    entertainmentTotalUsageNew: number;
+    lightTotalUsageNew: number;
+    coolTotalUsageNew: number;
+    heatTotalUsageNew: number;
+    //**************** recommendation **********************
+    showComparison: boolean = false;
+    washingChosen: number;
+    dryerChosen: number;
+    televisionChosen: number;
+    fridgeChosen: number;
+
 
     public setShowCharts(flag: boolean) {
         this.showCharts = flag;
@@ -142,5 +176,11 @@ export class DataService {
 
     public setBarChartDataAustralia(barChartDataAustralia: { data: number[], label: string }[]) {
         this.barChartDataAustralia = barChartDataAustralia;
+    }
+
+    public questionnaireCompleted(): boolean {
+        return this.heatTotalUsage != null && this.coolTotalUsage != null && this.lightTotalUsage != null
+            && this.kitchenTotalUsage != null && this.entertainmentTotalUsage != null
+            && this.laundryTotalUsage != null;
     }
 }

@@ -15,7 +15,9 @@ const routes: Routes = [
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
-            { path: 'questionnaire', loadChildren: './questionnaire/questionnaire.module#QuestionnaireModule' }
+            { path: 'questionnaire', loadChildren: './questionnaire/questionnaire.module#QuestionnaireModule' },
+            { path: 'recommendation', loadChildren: './recommendation/recommendation.module#RecommendationModule'},
+            { path: 'report', loadChildren: './report/report.module#ReportModule'}
         ]
     }
 ];

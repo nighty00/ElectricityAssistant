@@ -1,6 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-md-5">
     <fieldset #inputFieldSet [ngClass]="inputFieldSetClasses">
+      <label class="input-label">Monthly electricity usage</label>
       <input #inputNumber [ngClass]="inputNumberClasses" type="number" (keyup.enter)="getAverageUsageInput(inputNumber.value)"
         (keyup)="checkValidation($event)" placeholder="Input your electricity usage last month(kWh)" maxlength="5" [(ngModel)]="inputUsage"
       />
@@ -8,6 +9,7 @@
   </div>
   <div class="col-md-2">
     <div class="form-group">
+      <label class="input-label">Month</label>
       <select #monthSelector class="form-control" [(ngModel)]="monthSelected">
                   <option>--please select month--</option>
                   <option>January</option>
@@ -26,7 +28,9 @@
     </div>
   </div>
   <div class="col-md-1">
-    <button class="btn btn-primary" (click)="getAverageUsageInput(inputNumber.value, monthSelector.value)">Confirm</button>
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="getAverageUsageInput(inputNumber.value, monthSelector.value)">Confirm</button>
+    </div>
   </div>
 </div>
 <div class="row justify-content-center" *ngIf="!isMonthSelected">
@@ -40,7 +44,7 @@
     <!-- World Bar Chart -->
     <div #worldBarChart class="card mb-3" *ngIf="worldOrAustralia == 'world'">
       <div class="card-header">
-        Average electricity usage (kWh)
+        Average annual electricity usage (kWh)
       </div>
       <div class="card-block">
         <canvas baseChart [datasets]="barChartDataWorld" [labels]="barChartLabelsWorld" [options]="barChartOptions" [legend]="barChartLegend"
@@ -56,7 +60,7 @@
     <!-- Australia Bar Chart -->
     <div #australiaBarChart class="card mb-3" *ngIf="worldOrAustralia == 'Australia'">
       <div class="card-header">
-        Average electricity usage (kWh)
+        Average annual electricity usage (kWh)
       </div>
       <div class="card-block">
         <canvas baseChart [datasets]="barChartDataAustralia" [labels]="barChartLabelsAustralia" [options]="barChartOptions" [legend]="barChartLegend"
@@ -117,7 +121,7 @@
           </a>
       </div>
       <div id="washingBlock" class="col-md-4" [@blockAnimation]="washingState" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
-        <a class="" [routerLink]="['/questionnaire/laundry']" [routerLinkActive]="['router-link-active']">
+        <a class="" [routerLink]="['/questionnaire/laundry']" [fragment]="'parentDiv'" [routerLinkActive]="['router-link-active']">
             <img class="img-fluid" 
             [src]="laundryTotalUsage != null ? '../../../../assets/images/blocks/washing_tick_icon.png': '../../../../assets/images/blocks/washing_icon.png'" alt="">
             <p>Laundry</p>
@@ -151,14 +155,13 @@
 
 <div class="row justify-content-center" *ngIf="showCharts">
   <div class="col-md-1">
-    <button class="btn btn-primary" (click)="generateReport()" [disabled]="heatTotalUsage == null || coolTotalUsage == null || lightTotalUsage == null || kitchenTotalUsage == null || entertainmentTotalUsage == null || laundryTotalUsage == null">
+    <button class="btn btn-primary" [routerLink]="['/report']"
+      [disabled]="heatTotalUsage == null || coolTotalUsage == null || lightTotalUsage == null || kitchenTotalUsage == null || entertainmentTotalUsage == null || laundryTotalUsage == null">
       Generate report
     </button>
   </div>
 </div>
 <!-- blocks -->
-
-<hr/><br>
 
 <!-- report -->
 <div class="row" *ngIf="showReport">
@@ -237,7 +240,7 @@
     </div>
   </div>
   <div class="col-md-8">
-    <span>Total saving: {{totalSaving | number: '.1-2'}}kWh</span>
+    <span>Total annual saving: {{totalSaving | number: '.1-2'}}kWh</span>
   </div>
 </div>
 <!-- report -->
