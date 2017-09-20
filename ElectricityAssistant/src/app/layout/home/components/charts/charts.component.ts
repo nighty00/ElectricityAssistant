@@ -251,11 +251,11 @@ export class ChartsComponent implements OnInit {
 
       //bar chart
       this.barChartDataWorld = [
-        { data: [this.averageUsage], label: 'Your usage' },
+        { data: [this.averageUsage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'Your usage' },
         { data: [0, 11879, 11698, 7227, 5513, 4648, 3512, 3471, 2419, 1349, 900, 570], label: 'World Average usage' }
       ];
       this.barChartDataAustralia = [
-        { data: [this.averageUsage], label: 'Your usage' },
+        { data: [this.averageUsage, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'Your usage' },
         { data: [0, 10056, 8550, 7639, 7626, 7227, 6873, 6790, 6198, 5000], label: 'Australia Average usage' }
       ];
       this.dataService.setBarChartDataWorld(this.barChartDataWorld);
