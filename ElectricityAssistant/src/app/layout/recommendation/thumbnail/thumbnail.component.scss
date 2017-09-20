@@ -123,6 +123,19 @@ img {
     background: #b36800;
     color: #fff; }
 
+    .add-to-cart-selected{
+      background: #02F274;
+      padding: 1.2em 1.5em;
+      border: none;
+      text-transform: UPPERCASE;
+      font-weight: bold;
+      color: #fff;
+      -webkit-transition: background .3s ease;
+              transition: background .3s ease; }
+      .add-to-cart-selected:hover{
+        background: #038A43;
+        color: #fff; }
+
 .not-available {
   text-align: center;
   line-height: 2em; }

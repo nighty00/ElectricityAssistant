@@ -1,3 +1,5 @@
+import { Subject } from 'rxjs/Subject';
+
 export class DataService {
     //home.module
     showCharts: boolean = false;
@@ -144,10 +146,15 @@ export class DataService {
     heatTotalUsageNew: number;
     //**************** recommendation **********************
     showComparison: boolean = false;
-    washingChosen: number;
-    dryerChosen: number;
-    televisionChosen: number;
-    fridgeChosen: number;
+    // washingChosen: number;
+    // dryerChosen: number;
+    // televisionChosen: number;
+    // fridgeChosen: number;
+
+    washingChosen = new Subject();
+    dryerChosen = new Subject();
+    televisionChosen = new Subject();
+    fridgeChosen = new Subject();
 
 
     public setShowCharts(flag: boolean) {

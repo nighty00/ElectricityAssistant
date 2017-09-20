@@ -57,7 +57,8 @@
         <div class="action">
           <a class="btn btn-primary" [href]="buy" target="_blank"><span>Click to buy online</span></a>
           <br>
-          <button class="add-to-cart btn btn-default" type="button" (click)="choose()">Choose this model</button>
+          <button *ngIf="!btnSelected" class="add-to-cart btn btn-default" type="button" (click)="choose()">Choose this model</button>
+          <button *ngIf="btnSelected" class="add-to-cart-selected btn btn-default" type="button" (click)="choose()">Model selected</button>
           <!-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> -->
         </div>
       </div>

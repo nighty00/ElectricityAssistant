@@ -20,21 +20,27 @@ export class ThumbnailComponent implements OnInit {
   @Input() volume: string;
   @Input() screenSize: string;
 
+  //button style
+  btnSelected: boolean = false;
+
   starClassList: string[] = []
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     const maxStar: number = this.getMaxStars();
-    for(var i = 0; i < Number.parseInt(this.star); i++) {
+    for (var i = 0; i < Number.parseInt(this.star); i++) {
       this.starClassList.push("fa fa-star checked");
     }
-    for(var i = Number.parseInt(this.star) ; i < maxStar; i++) {
+    for (var i = Number.parseInt(this.star); i < maxStar; i++) {
       this.starClassList.push("fa fa-star");
     }
-    for(var i = maxStar ; i < 8; i++) {
+    for (var i = maxStar; i < 8; i++) {
       this.starClassList.push("");
     }
+
+    //subscription
+    this.subscription();
   }
 
   getMaxStars(): number {
@@ -50,16 +56,71 @@ export class ThumbnailComponent implements OnInit {
 
   choose() {
     if (this.type == "washing machine") {
-      this.dataService.washingChosen = this.index;
+      this.dataService.washingChosen.next(this.index);
     }
     else if (this.type == "clothes dryer") {
-      this.dataService.dryerChosen = this.index;
+      this.dataService.dryerChosen.next(this.index);
     }
     else if (this.type == "fridge") {
-      this.dataService.fridgeChosen = this.index;
+      this.dataService.fridgeChosen.next(this.index);
     }
     else if (this.type == "television") {
-      this.dataService.televisionChosen = this.index;
+      this.dataService.televisionChosen.next(this.index);
     }
+  }
+
+  subscription() {
+    if (this.type == "washing machine") {
+      this.dataService.washingChosen
+        .subscribe(
+          (index: number) => {
+            if (index != this.index)
+              this.changeBtnStyleToUnselected();
+            else
+              this.changeBtnStyleToSelected();
+          }
+        );
+    }
+    else if (this.type == "clothes dryer") {
+      this.dataService.dryerChosen
+      .subscribe(
+        (index: number) => {
+          if (index != this.index)
+            this.changeBtnStyleToUnselected();
+          else
+            this.changeBtnStyleToSelected();
+        }
+      );
+    }
+    else if (this.type == "fridge") {
+      this.dataService.fridgeChosen
+      .subscribe(
+        (index: number) => {
+          if (index != this.index)
+            this.changeBtnStyleToUnselected();
+          else
+            this.changeBtnStyleToSelected();
+        }
+      );
+    }
+    else if (this.type == "television") {
+      this.dataService.televisionChosen
+      .subscribe(
+        (index: number) => {
+          if (index != this.index)
+            this.changeBtnStyleToUnselected();
+          else
+            this.changeBtnStyleToSelected();
+        }
+      );
+    }
+  }
+
+  changeBtnStyleToSelected() {
+    this.btnSelected = true;
+  }
+
+  changeBtnStyleToUnselected() {
+    this.btnSelected = false;
   }
 }

@@ -16,8 +16,15 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
-    onLoggedin() {
-        localStorage.setItem('isLoggedin', 'true');
+    onLoggedin(password: string) {
+        if (password == "password") {
+            localStorage.setItem('isLoggedin', 'true');
+            this.router.navigate(['/home']);
+        }
+        else {
+            localStorage.setItem('isLoggedin', 'false');
+            alert("Wrong password!");
+        }
     }
 
 }
