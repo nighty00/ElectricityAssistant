@@ -38,6 +38,7 @@ export class ReportComponent implements OnInit {
   public showComparison: boolean;
   public reportPieChart2Data: any[];
   public reportBarChart2Data: any[];
+  public totalElectricitySaving: number;
 
   constructor(private dataService: DataService) { }
 
@@ -59,6 +60,7 @@ export class ReportComponent implements OnInit {
     //initialize report
     this.generateReport();
     if (this.showComparison)
+      this.totalElectricitySaving = this.dataService.totalElectricitySaving;
       this.generateNewReport();
   }
 

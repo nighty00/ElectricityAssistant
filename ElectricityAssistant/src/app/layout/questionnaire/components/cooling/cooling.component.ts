@@ -181,7 +181,6 @@ export class CoolingComponent implements OnInit {
   }
 
   public submit(): void {
-
     if (this.showQuestion3()) {
       var daysOfUsing: number;
       switch (this.temperature) {
@@ -209,7 +208,6 @@ export class CoolingComponent implements OnInit {
         }
       }
     }
-
     //store data in dataService
     this.dataService.coolType = this.type;
     this.dataService.coolKnowBrand = this.knowBrand;

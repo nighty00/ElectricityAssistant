@@ -133,6 +133,7 @@ export class DataService {
     ]
 
     totalSaving: number = 0;
+    totalElectricitySaving: number = 0;
 
     kitchenFridgeTotalUsageNew: number;
     kitchenDishTotalUsageNew: number;

@@ -198,6 +198,8 @@ export class RecommendationComponent implements OnInit {
   recommendFridgeList: any[] = [];
   recommendTvList: any[] = [];
 
+  totalElectricitySaving: number;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
@@ -212,38 +214,70 @@ export class RecommendationComponent implements OnInit {
     this.recommendDryer();
     this.recommendTv();
     this.recommendFridge();
+
+    //subscription
+    this.dataService.laundryWashingTotalUsageNew = this.dataService.laundryWashingTotalUsage;
+    this.dataService.laundryDryTotalUsageNew = this.dataService.laundryDryTotalUsage;
+    this.dataService.entertainmentTotalUsageNew = this.dataService.entertainmentTotalUsage;
+    this.dataService.kitchenFridgeTotalUsageNew = this.dataService.kitchenFridgeTotalUsage;
+
+    this.dataService.washingChosen.subscribe(
+      (index: number) => {
+        this.dataService.laundryWashingTotalUsageNew = Number.parseFloat(this.recommendWashingList[index].power);
+        this.dataService.laundryWashingTotalUsageNew = this.min(this.dataService.laundryWashingTotalUsage, this.dataService.laundryWashingTotalUsageNew)
+        console.log("washing total usage" + this.dataService.laundryWashingTotalUsageNew);
+      }
+    );
+
+    this.dataService.dryerChosen.subscribe(
+      (index: number) => {
+        this.dataService.laundryDryTotalUsageNew = Number.parseFloat(this.recommendDryerList[index].power);
+        this.dataService.laundryDryTotalUsageNew = this.min(this.dataService.laundryDryTotalUsage, this.dataService.laundryDryTotalUsageNew)
+        console.log("dryer total usage" + this.dataService.laundryDryTotalUsageNew);
+      }
+    );
+
+    this.dataService.televisionChosen.subscribe(
+      (index: number) => {
+        this.dataService.entertainmentTotalUsageNew = Number.parseFloat(this.recommendTvList[index].power);
+        this.dataService.entertainmentTotalUsageNew = this.min(this.dataService.entertainmentTotalUsage, this.dataService.entertainmentTotalUsageNew)
+        console.log("television total usage" + this.dataService.entertainmentTotalUsageNew);
+      }
+    );
+
+    this.dataService.fridgeChosen.subscribe(
+      (index: number) => {
+        this.dataService.kitchenFridgeTotalUsageNew = Number.parseFloat(this.recommendFridgeList[index].power);
+        this.dataService.kitchenFridgeTotalUsageNew = this.min(this.dataService.kitchenFridgeTotalUsage, this.dataService.kitchenFridgeTotalUsageNew)
+        console.log("kitchen total usage" + this.dataService.kitchenFridgeTotalUsageNew);
+      }
+    );
+  }
+
+  min(a: number, b: number): number {
+    if (a < b)
+      return a;
+    else 
+      return b;
   }
 
   checkReportAgain() {
     this.dataService.showComparison = true;
 
-    if(this.dataService.washingChosen != undefined)
-      this.dataService.laundryWashingTotalUsageNew = this.dataService.laundryWashingTotalUsage * 0.8;
-    else
-      this.dataService.laundryWashingTotalUsageNew = this.dataService.laundryWashingTotalUsage;
-
-    if(this.dataService.dryerChosen != undefined)
-      this.dataService.laundryDryTotalUsageNew = this.dataService.laundryDryTotalUsage * 0.867;
-    else
-      this.dataService.laundryDryTotalUsageNew = this.dataService.laundryDryTotalUsage;
-
-    if(this.dataService.televisionChosen != undefined)
-      this.dataService.entertainmentTotalUsageNew = this.dataService.entertainmentTotalUsage * 0.623;
-    else
-      this.dataService.entertainmentTotalUsageNew = this.dataService.entertainmentTotalUsage;
-
-    if(this.dataService.fridgeChosen != undefined)
-      this.dataService.kitchenFridgeTotalUsageNew = this.dataService.kitchenTotalUsage * 0.8;
-    else
-      this.dataService.kitchenFridgeTotalUsageNew = this.dataService.kitchenTotalUsage;
-
     this.dataService.kitchenDishTotalUsageNew = this.dataService.kitchenDishTotalUsage;
     this.dataService.kitchenTotalUsageNew = this.dataService.kitchenDishTotalUsageNew + this.dataService.kitchenFridgeTotalUsageNew;
     this.dataService.laundryTotalUsageNew = this.dataService.laundryDryTotalUsageNew + this.dataService.laundryWashingTotalUsageNew;
-    this.dataService.lightTotalUsageNew = this.dataService.laundryTotalUsage;
+    this.dataService.lightTotalUsageNew = this.dataService.lightTotalUsage;
     this.dataService.coolTotalUsageNew = this.dataService.coolTotalUsage;
     this.dataService.heatTotalUsageNew = this.dataService.heatTotalUsage;
+
+    this.dataService.totalElectricitySaving = this.dataService.laundryTotalUsage - this.dataService.laundryTotalUsageNew
+      + this.dataService.entertainmentTotalUsage - this.dataService.entertainmentTotalUsageNew
+      + this.dataService.kitchenTotalUsage - this.dataService.kitchenTotalUsageNew;
+    
+    this.dataService.totalElectricitySaving = Math.round(this.dataService.totalElectricitySaving);
   }
+
   /**
    * washing machine
    */

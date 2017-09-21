@@ -93,8 +93,17 @@
       </div>
     </div>
   </div>
-</div>
 
+  <div class="col col-sm-12">
+    <small>World average electricity consumption. Retrieved from: http://shrinkthatfootprint.com/average-household-electricity-consumption</small>
+  </div>
+  <div class="col col-sm-12">
+    <small>Australia average electricity consumption. Retrieved from: http://www.aemc.gov.au/getattachment/be91ba47-45df-48ee-9dde-e67d68d2e4d4/2016-Electricity-Price-Trends-Report.aspx</small>
+  </div>
+  <div class="col col-sm-12">
+    <small>The Life Cycle Assessment (LCA) Harmonization project. Retrieved from: http://en.openei.org/apps/LCA/</small>
+  </div>
+</div>
 <hr />
 <br/>
 
@@ -155,8 +164,7 @@
 
 <div class="row justify-content-center" *ngIf="showCharts">
   <div class="col-md-1">
-    <button class="btn btn-primary" [routerLink]="['/report']"
-      [disabled]="heatTotalUsage == null || coolTotalUsage == null || lightTotalUsage == null || kitchenTotalUsage == null || entertainmentTotalUsage == null || laundryTotalUsage == null">
+    <button class="btn btn-primary" [routerLink]="['/report']" [disabled]="heatTotalUsage == null || coolTotalUsage == null || lightTotalUsage == null || kitchenTotalUsage == null || entertainmentTotalUsage == null || laundryTotalUsage == null">
       Generate report
     </button>
   </div>
