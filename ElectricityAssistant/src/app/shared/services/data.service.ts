@@ -2,6 +2,8 @@ import { Subject } from 'rxjs/Subject';
 
 export class DataService {
     //home.module
+    showChartsSubject = new Subject();
+    showReportSubject = new Subject();
     showCharts: boolean = false;
     showReport: boolean = false;
     inputUsage: number;
@@ -16,6 +18,10 @@ export class DataService {
         { data: [0], label: 'Your usage' },
         { data: [0, 10056, 8550, 7639, 7626, 7227, 6873, 6790, 6198, 5000], label: 'Australia Average usage' }
     ];
+
+
+    //**************************questionnaire ************************************/
+    currentQuestionnairePage = new Subject();
 
     //*************** heating.component **********************
     heatDaysOfUsing: string = "160";

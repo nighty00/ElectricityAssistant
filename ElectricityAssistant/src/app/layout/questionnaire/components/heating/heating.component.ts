@@ -70,6 +70,10 @@ export class HeatingComponent implements OnInit {
   constructor(private dataService: DataService, private restfulService: RestfulService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.dataService.currentQuestionnairePage.next("heating");
+    });
+    
     this.daysOfUsing = this.dataService.heatDaysOfUsing;
     this.type = this.dataService.heatType;
     this.numberOfHeaters = this.dataService.heatNumberOfHeaters;
@@ -217,5 +221,9 @@ export class HeatingComponent implements OnInit {
     this.dataService.heatTotalUsage = this.totalUsage;
 
     console.log(this.dataService.heatTotalUsage);
+
+    //enable nav link
+    this.dataService.showReportSubject.next(true);
+    this.dataService.showReport = true;
   }
 }

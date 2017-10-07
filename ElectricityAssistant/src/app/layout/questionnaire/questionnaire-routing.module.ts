@@ -10,12 +10,15 @@ import { LaundryComponent } from './components/laundry/laundry.component';
 import { LightingComponent } from './components/lighting/lighting.component';
 
 const routes: Routes = [
-  { path: 'cooling', component: CoolingComponent },
-  { path: 'heating', component: HeatingComponent },
-  { path: 'kitchen', component: KitchenComponent },
-  { path: 'laundry', component: LaundryComponent },
-  { path: 'entertainment', component: EntertainmentComponent },
-  { path: 'lighting', component: LightingComponent }
+  { path: '', component: QuestionnaireComponent, children: [
+    { path: '', component: EntertainmentComponent },
+    { path: 'cooling', component: CoolingComponent },
+    { path: 'heating', component: HeatingComponent },
+    { path: 'kitchen', component: KitchenComponent },
+    { path: 'laundry', component: LaundryComponent },
+    { path: 'entertainment', component: EntertainmentComponent },
+    { path: 'lighting', component: LightingComponent }
+  ] } 
 ];
 
 @NgModule({

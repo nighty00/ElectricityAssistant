@@ -49,6 +49,10 @@ export class CoolingComponent implements OnInit {
   constructor(private dataService: DataService, private restfulService: RestfulService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.dataService.currentQuestionnairePage.next("cooling");
+    });
+    
     //data binding
     this.type = this.dataService.coolType;
     this.knowBrand = this.dataService.coolKnowBrand;

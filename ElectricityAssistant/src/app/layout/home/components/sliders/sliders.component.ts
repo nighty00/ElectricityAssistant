@@ -16,28 +16,32 @@ export class SlidersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sliders.push(
-      {
-        imagePath: 'assets/images/img1.jpg',
-        label: '',
-        text: ''
-      },
-      {
-        imagePath: 'assets/images/img2.jpg',
-        label: '',
-        text: ''
-      },
-      {
-        imagePath: 'assets/images/img3.jpg',
-        label: '',
-        text: ''
-      },
-      {
-        imagePath: 'assets/images/img4.jpg',
-        label: '',
-        text: ''
-      },
-    );
+    
   }
+
+  // ngOnInit() {
+  //   this.sliders.push(
+  //     {
+  //       imagePath: 'assets/images/img1.jpg',
+  //       label: '',
+  //       text: ''
+  //     },
+  //     {
+  //       imagePath: 'assets/images/img2.jpg',
+  //       label: '',
+  //       text: ''
+  //     },
+  //     {
+  //       imagePath: 'assets/images/img3.jpg',
+  //       label: '',
+  //       text: ''
+  //     },
+  //     {
+  //       imagePath: 'assets/images/img4.jpg',
+  //       label: '',
+  //       text: ''
+  //     },
+  //   );
+  // }
 
 }

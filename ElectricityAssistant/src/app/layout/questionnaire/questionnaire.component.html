@@ -1,0 +1,38 @@
+<div class="questionnaire" 
+    [ngClass]="{kitchen: currentPage == 'kitchen', cooling: currentPage == 'cooling', heating: currentPage == 'heating',
+        lighting: currentPage == 'lighting', entertainment: currentPage == 'entertainment', laundry: currentPage == 'laundry'}">
+    <div class="row nav-tag justify-content-center">
+        <div class="col-md-10">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/questionnaire']" [routerLinkActiveOptions]="{exact: true}" 
+                    [routerLinkActive]="['active']">Entertainment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['kitchen']" [routerLinkActive]="['active']">Kitchen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['laundry']" [routerLinkActive]="['active']">Laundry</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['lighting']" [routerLinkActive]="['active']">Lighting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['cooling']" [routerLinkActive]="['active']">Cooling</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['heating']" [routerLinkActive]="['active']">Heating</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 content">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

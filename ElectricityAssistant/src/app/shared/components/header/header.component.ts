@@ -11,10 +11,11 @@ import { DataService } from '../../services/data.service';
 })
 export class HeaderComponent implements OnInit {
 
-    showQuestionnaireBtn: boolean;
-    showReportBtn: boolean;
+    showQuestionnaireBtn: boolean = false;
+    showReportBtn: boolean = false;
+    showRecommendationBtn: boolean = false;
 
-    constructor(private translate: TranslateService, public router: Router,private dataService: DataService) {
+    constructor(private translate: TranslateService, public router: Router, private dataService: DataService) {
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992) {
                 this.toggleSidebar();
@@ -23,8 +24,19 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.showQuestionnaireBtn = this.dataService.showCharts;
-        this.showReportBtn = this.dataService.showReport;
+        this.dataService.showChartsSubject
+            .subscribe(
+            (flag: boolean) => {
+                this.showQuestionnaireBtn = flag;
+            }
+            );
+        this.dataService.showReportSubject
+            .subscribe(
+            (flag: boolean) => {
+                this.showReportBtn = flag;
+                this.showRecommendationBtn = flag;
+            }
+            );
     }
 
     toggleSidebar() {

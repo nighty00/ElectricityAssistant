@@ -61,6 +61,10 @@ export class KitchenComponent implements OnInit {
   constructor(private dataService: DataService, private restfulService: RestfulService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.dataService.currentQuestionnairePage.next("kitchen");
+    });
+    
     this.knowFridgeBrand = this.dataService.kitchenKnowFridgeBrand;
     this.fridgeBrand = this.dataService.kitchenFridgeBrand;
     this.fridgeModel = this.dataService.kitchenFridgeModel;

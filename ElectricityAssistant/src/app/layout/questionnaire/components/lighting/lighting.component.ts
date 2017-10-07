@@ -41,6 +41,9 @@ export class LightingComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.dataService.currentQuestionnairePage.next("lighting");
+    });
     this.halogenLight = this.dataService.lightHalogenLight;
     this.numberOfLights = this.dataService.lightNumberOfLights;
     this.powerOfLights = this.dataService.lightPowerOfLights;

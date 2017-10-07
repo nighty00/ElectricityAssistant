@@ -8,9 +8,14 @@ h1,h2,h3,h4,h5,h6 {
     text-transform: uppercase;
 }
 
-img {
+img.tree-img {
     height: 200px;
     width: 200px;
+}
+
+img.steps-img {
+    height: auto;
+    width: 100%;
 }
 
 div#block {
@@ -41,4 +46,76 @@ label.input-label {
 
 .btn {
     margin-top: 2.1rem;
+}
+
+
+
+
+header.masthead {
+    text-align: center;
+    color: white;
+    background-image: url("../../../../../assets/images/header-bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+    header.masthead .intro-text {
+      padding-top: 150px;
+      padding-bottom: 100px; } 
+      header.masthead .intro-text .intro-lead-in {
+        font-size: 22px;
+        font-style: italic;
+        line-height: 22px;
+        margin-bottom: 25px;
+        font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+      header.masthead .intro-text .intro-heading {
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 50px;
+        margin-bottom: 25px;
+        font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        text-transform: uppercase; }
+  
+  @media (min-width: 768px) {
+    header.masthead .intro-text {
+      padding-top: 200px;
+      padding-bottom: 200px; }
+      header.masthead .intro-text .intro-lead-in {
+        font-size: 40px;
+        font-style: italic;
+        line-height: 40px;
+        margin-bottom: 25px;
+        font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+      header.masthead .intro-text .intro-heading {
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 50px;
+        margin-bottom: 50px;
+        font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        text-transform: uppercase; } }
+
+div.input-form {
+    margin-top: 20px;
+}
+div.input-intro-div {
+    text-align: center;
+}
+span.input-intro-text {
+    font-size: 25px;
+    font-style: italic;
+    line-height: 25px;
+    margin-bottom: 25px;
+    font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width: 100%;
+}
+
+i.help {
+    margin-top: 36px;
+    cursor: pointer;
+    font-size: 30px;
 }

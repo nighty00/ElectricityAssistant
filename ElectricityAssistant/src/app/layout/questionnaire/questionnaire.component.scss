@@ -1,0 +1,96 @@
+div.questionnaire {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+div.kitchen {
+    background-image: url("../../../assets/images/kitchen-bg.jpg");
+}
+
+div.entertainment {
+    background-image: url("../../../assets/images/entertainment-bg.jpg");
+}
+
+div.heating {
+    background-image: url("../../../assets/images/heating-bg.jpg");
+}
+
+div.cooling {
+    background-image: url("../../../assets/images/cooling-bg.jpg");
+}
+
+div.lighting {
+    background-image: url("../../../assets/images/lighting-bg.jpg");
+}
+
+div.laundry {
+    background-image: url("../../../assets/images/laundry-bg.jpg");
+}
+
+
+// nav bar
+div.nav-tag {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    height: auto;
+    padding-bottom: 1px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+ul.nav.nav-tabs {
+    width: 100%;
+    height: auto;
+    border: 0px;
+}
+
+li.nav-item {
+    width: 100%;
+    height: auto;
+}
+
+a.nav-link {
+    text-align: center;
+    border: 0px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: solid 10px transparent;
+    background-color: transparent;
+    color: inherit;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 25px;
+}
+a.nav-link.active {
+    border: 0px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: solid 10px #785E06;
+    background-color: #fed136;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 25px;
+}
+a.nav-link:hover {
+    background-color: #FFEDB1; 
+    border-color: #AD902F;
+}
+a.nav-link.active:hover {
+    background-color: #fed136; 
+    border-color: #785E06;
+}
+
+// content
+div.content {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+}

@@ -67,6 +67,9 @@ export class LaundryComponent implements OnInit {
 
   ngOnInit() {
 
+    setTimeout(() => {
+      this.dataService.currentQuestionnairePage.next("laundry");
+    });
     //initialize data
     this.washingKnow = this.dataService.laundryWashingKnow;
     this.washingBrand = this.dataService.laundryWashingBrand;

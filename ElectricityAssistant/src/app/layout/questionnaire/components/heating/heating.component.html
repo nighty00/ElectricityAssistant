@@ -1,230 +1,224 @@
-<div class="row justify-content-center parent-div">
-  <div class="col-md-6">
-
-    <div class="row">
-      <h1>Heating section</h1>
-    </div>
-    <hr/>
-    <!-- Question 1 You will use heaters when the temperature is below -->
-    <div class="row">
-      <fieldset class="form-group">
-        <label class="question">Generally, you use heating appliances when the temperature is below:</label>
-        <div class="radio">
-          <label>
+<div class="row">
+  <h1>Heating section</h1>
+</div>
+<hr/>
+<!-- Question 1 You will use heaters when the temperature is below -->
+<div class="row">
+  <fieldset class="form-group">
+    <label class="question">Generally, you use heating appliances when the temperature is below:</label>
+    <div class="radio">
+      <label>
             <input type="radio" name="question1" value="160" [(ngModel)]="daysOfUsing"/> 18<sup>o</sup>C
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question1" value="120" [(ngModel)]="daysOfUsing"/> 15<sup>o</sup>C
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question1"value="45" [(ngModel)]="daysOfUsing"/> 10<sup>o</sup>C or below
           </label>
-        </div>
-      </fieldset>
     </div>
+  </fieldset>
+</div>
 
-    <!-- Question 2 How long do you normally use heating appliances per day? -->
-    <div class="row" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">For how long do you normally use heating appliances per day during winters?</label>
-        <div class="radio">
-          <label>
+<!-- Question 2 How long do you normally use heating appliances per day? -->
+<div class="row" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">For how long do you normally use heating appliances per day during winters?</label>
+    <div class="radio">
+      <label>
             <input type="radio" name="question2" value="2" [(ngModel)]="hoursOfUsing" /> Less than 2 hours
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question2" value="5" [(ngModel)]="hoursOfUsing" /> Less than 5 hours
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question2" value="10" [(ngModel)]="hoursOfUsing" /> Less than 10 hours
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question2" value="15" [(ngModel)]="hoursOfUsing" /> Over the night
           </label>
-        </div>
-      </fieldset>
     </div>
+  </fieldset>
+</div>
 
-    <!-- Question 3 Which household appliance do you most frequently use to heat your home? -->
-    <div class="row">
-      <fieldset class="form-group">
-        <label class="question">Which household appliance do you frequently use to heat your home?</label>
-        <div class="radio">
-          <label>
+<!-- Question 3 Which household appliance do you most frequently use to heat your home? -->
+<div class="row">
+  <fieldset class="form-group">
+    <label class="question">Which household appliance do you frequently use to heat your home?</label>
+    <div class="radio">
+      <label>
             <input type="radio" name="question3" value="Gas heater" [(ngModel)]="type" /> Gas heater
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question3" value="Portable electric heater" [(ngModel)]="type"/> Portable electric heater
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question3"value="Air-conditioner" [(ngModel)]="type"/> Air-conditioner
           </label>
-        </div>
-      </fieldset>
     </div>
+  </fieldset>
+</div>
 
-    <!-- Question 4 How many electric heaters are you using? -->
-    <div class="row" *ngIf="showQuestion4()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">How many electric heaters do you use during winters?</label>
-        <div class="radio">
-          <label>
+<!-- Question 4 How many electric heaters are you using? -->
+<div class="row" *ngIf="showQuestion4()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">How many electric heaters do you use during winters?</label>
+    <div class="radio">
+      <label>
             <input type="radio" name="question4" value="1" [(ngModel)]="numberOfHeaters" /> One
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question4" value="2" [(ngModel)]="numberOfHeaters"/> Two
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question4"value="3" [(ngModel)]="numberOfHeaters"/> Three or more
           </label>
-        </div>
-      </fieldset>
     </div>
+  </fieldset>
+</div>
 
-    <!-- Question 5 What is the average power of your electric heaters? -->
-    <div class="row" *ngIf="showQuestion5()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">What is the average power of your electric heaters?</label>
-        <div class="radio">
-          <label>
+<!-- Question 5 What is the average power of your electric heaters? -->
+<div class="row" *ngIf="showQuestion5()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">What is the average power of your electric heaters?</label>
+    <div class="radio">
+      <label>
             <input type="radio" name="question5" value="1" [(ngModel)]="powerOfHeater"/> 1000W
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question5" value="2" [(ngModel)]="powerOfHeater"/> 2000W
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question5" value="3" [(ngModel)]="powerOfHeater"/> 3000W
           </label>
-        </div>
-      </fieldset>
     </div>
+  </fieldset>
+</div>
 
-    <!-- Question 6: Do you know the brand and model of your air-conditioner for heating? -->
-    <div class="row" *ngIf="showQuestion6()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">Do you know the brand and model of your air-conditioner?</label>
-        <div class="radio">
-          <label>
+<!-- Question 6: Do you know the brand and model of your air-conditioner for heating? -->
+<div class="row" *ngIf="showQuestion6()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">Do you know the brand and model of your air-conditioner?</label>
+    <div class="radio">
+      <label>
             <input type="radio" name="question6" value="yes" [(ngModel)]="knowBrand"> Yes
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question6" value="no" [(ngModel)]="knowBrand"> No
           </label>
-        </div>
-      </fieldset>
     </div>
+  </fieldset>
+</div>
 
-    <!-- Question 7 Select the brand and model of your air-conditioner. -->
-    <div class="row" *ngIf="showQuestion7()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">Select the brand and model of your air-conditioner.</label>
-        <div class="row">
-          <div class="col-md-6">
-            <fieldset class="form-group">
-              <label>Select brand</label>
-              <div class="form-group">
-                <select class="form-control" [(ngModel)]="brand" (change)="onBrandSelected($event)">
+<!-- Question 7 Select the brand and model of your air-conditioner. -->
+<div class="row" *ngIf="showQuestion7()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">Select the brand and model of your air-conditioner.</label>
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset class="form-group">
+          <label>Select brand</label>
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="brand" (change)="onBrandSelected($event)">
                   <option *ngFor="let b of brandList">{{b}}</option>
                 </select>
-              </div>
-            </fieldset>
           </div>
-          <div class="col-md-6">
-            <fieldset class="form-group">
-              <label>Select model</label>
-              <div class="form-group">
-                <select class="form-control" [(ngModel)]="model" (change)="onModelSelected($event)"> 
+        </fieldset>
+      </div>
+      <div class="col-md-6">
+        <fieldset class="form-group">
+          <label>Select model</label>
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="model" (change)="onModelSelected($event)"> 
                   <option *ngFor="let m of modelList">{{m}}</option>
                 </select>
-              </div>
-            </fieldset>
           </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 8: Please choose the energy rating of your air-conditioner. -->
-    <div class="row" *ngIf="showQuestion8()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">Please choose the energy rating of your air-conditioner.</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question8" value="2" [(ngModel)]="starsOfAC"/> 2 stars
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question8" value="3" [(ngModel)]="starsOfAC"/> 3 stars
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question8" value="4" [(ngModel)]="starsOfAC"/> 4 stars
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question8" value="5" [(ngModel)]="starsOfAC"/> 5 stars
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 9 What is the size of the area where you heat with air-condition? -->
-    <div class="row" *ngIf="showQuestion9()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">What is the size of the area where you heat with air-condition?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question9" value="small" [(ngModel)]="sizeOfRoom" /> About 12m<sup>2</sup>
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question9" value="middle" [(ngModel)]="sizeOfRoom"/> About 30m<sup>2</sup>
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question9" value="large" [(ngModel)]="sizeOfRoom"/> About 60m<sup>2</sup>
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="row">
-      <div class="btn-group">
-        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/cooling']" [routerLinkActive]="['router-link-active']">Previous section</button>
-        <button class="btn btn-warning" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Back to home page</button>
+        </fieldset>
       </div>
     </div>
+  </fieldset>
+</div>
 
-    <div class="row" style="margin: 10px 0">
-      <small>Commonwealth of Australia. (2016). Air Conditioners[CSV]. Retrieved from http://reg.energyrating.gov.au/comparator/product_types/64/search/</small>
+<!-- Question 8: Please choose the energy rating of your air-conditioner. -->
+<div class="row" *ngIf="showQuestion8()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">Please choose the energy rating of your air-conditioner.</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question8" value="2" [(ngModel)]="starsOfAC"/> 2 stars
+          </label>
     </div>
-    
+    <div class="radio">
+      <label>
+            <input type="radio" name="question8" value="3" [(ngModel)]="starsOfAC"/> 3 stars
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question8" value="4" [(ngModel)]="starsOfAC"/> 4 stars
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question8" value="5" [(ngModel)]="starsOfAC"/> 5 stars
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 9 What is the size of the area where you heat with air-condition? -->
+<div class="row" *ngIf="showQuestion9()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">What is the size of the area where you heat with air-condition?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question9" value="small" [(ngModel)]="sizeOfRoom" /> About 12m<sup>2</sup>
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question9" value="middle" [(ngModel)]="sizeOfRoom"/> About 30m<sup>2</sup>
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question9" value="large" [(ngModel)]="sizeOfRoom"/> About 60m<sup>2</sup>
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<div class="row">
+  <div class="btn-group">
+    <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/cooling']" [routerLinkActive]="['router-link-active']">
+      <i class="fa fa-mail-reply"></i> Previous section
+    </button>
+    <button class="btn btn-success" [routerLink]="['/report']" (click)="submit()">
+      Submit Questionnaire <i class="fa fa-check"></i>
+    </button>
   </div>
 </div>

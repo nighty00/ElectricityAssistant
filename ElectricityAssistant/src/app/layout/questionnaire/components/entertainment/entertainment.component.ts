@@ -47,6 +47,10 @@ export class EntertainmentComponent implements OnInit {
   constructor(private dataService: DataService, private restfulService: RestfulService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.dataService.currentQuestionnairePage.next("entertainment");
+    });
+    
     this.tvKnow = this.dataService.entertainmentTvKnow;
     this.brand = this.dataService.entertainmentBrand;
     this.model = this.dataService.entertainmentModel;

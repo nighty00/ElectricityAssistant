@@ -1,72 +1,68 @@
-$topnav-background-color: #222;
-.topnav {
-    border-radius: 0;
-    background-color: $topnav-background-color;
-    padding : 6px;
-    z-index:2;
-    .text-center{
-        text-align: center;
-        padding-left : 0;
-        cursor: pointer;
-    }
-    .top-right-nav{
-        .buy-now{
-            a{
-                color:#999;
-            }
-        }
-        .dropdown-menu{
-            top: 40px;
-            right: -5px;
-            left : auto;
-            .message-preview{
-                .media{
-                    .media-body{
-                        .media-heading{
-                            font-size: 14px;
-                            font-weight: bold;
-                            margin-bottom : 0;
-                        }
-                        p{
-                            margin : 0;
-                        }
-                        p.last{
-                            font-size : 13px;
-                            margin-bottom: 0;
-                        }
-                    }
-                }
-            }
-            hr {
-                margin-top: 1px;
-                margin-bottom: 4px;
-            }
-        }
-    }
+// navbar
+#mainNav {
+    background-color: #222222; 
 }
-.messages {
-    width: 300px;
-    .media {
-        border-bottom: 1px solid #DDD;
-        padding: 5px 10px;
-        &:last-child {
-            border-bottom: none;
-        }
-    }
-    .media-body {
-        h5 {
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .small {
-            margin: 0;
-        }
-        .last {
-            font-size: 12px;
-            margin: 0;
-        }
-    }
+
+// toggler button
+#mainNav .navbar-toggler {
+    font-size: 12px;
+    right: 0;
+    padding: 13px;
+    text-transform: uppercase;
+    color: white;
+    border: 0;
+    background-color: #fed136;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase; 
 }
-.header .navbar {
-    background: $topnav-background-color !important;
+
+// brand
+#mainNav .navbar-brand {
+    color: #fed136;
+    font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; 
 }
+#mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+    color: #fec503; 
+}
+
+// item link
+#mainNav .navbar-nav .nav-item .nav-link {
+    font-size: 90%;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: white;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: uppercase; 
+}
+#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: #fed136; 
+}
+#mainNav .navbar-nav .nav-item .nav-link.disabled, #mainNav .navbar-nav .nav-item .nav-link.disabled:hover {
+    color: #908E89; 
+    pointer-events: none;
+}
+
+  
+//   @media (min-width: 992px) {
+//     #mainNav {
+//       padding-top: 25px;
+//       padding-bottom: 25px;
+//       -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+//       -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+//       transition: padding-top 0.3s, padding-bottom 0.3s;
+//       border: none;
+//       background-color: transparent; }
+//       #mainNav .navbar-brand {
+//         font-size: 1.75em;
+//         -webkit-transition: all 0.3s;
+//         -moz-transition: all 0.3s;
+//         transition: all 0.3s; }
+//       #mainNav .navbar-nav .nav-item .nav-link {
+//         padding: 1.1em 1em !important; }
+//       #mainNav.navbar-shrink {
+//         padding-top: 0;
+//         padding-bottom: 0;
+//         background-color: #222222; }
+//         #mainNav.navbar-shrink .navbar-brand {
+//           font-size: 1.25em;
+//           padding: 12px 0; } }

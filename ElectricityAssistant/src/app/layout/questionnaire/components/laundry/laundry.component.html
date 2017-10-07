@@ -1,278 +1,271 @@
-<div class="row justify-content-center parent-div">
-  <div class="col-md-6">
-
-    <div class="row">
-      <h1><a name="parentDiv">Laundry section</a></h1>
-    </div>
-    <hr/>
-    <!-- Question 1: Do you know the brand and model of your washing machine? -->
-    <div class="row">
-      <fieldset class="form-group">
-        <label class="question">Do you know the brand and model of your washing machine?</label>
-        <div class="radio">
-          <label>
+<div class="row">
+  <h1><a name="parentDiv">Laundry section</a></h1>
+</div>
+<hr/>
+<!-- Question 1: Do you know the brand and model of your washing machine? -->
+<div class="row">
+  <fieldset class="form-group">
+    <label class="question">Do you know the brand and model of your washing machine?</label>
+    <div class="radio">
+      <label>
             <input type="radio" name="question1" value="yes" [(ngModel)]="washingKnow"> Yes
           </label>
-        </div>
-        <div class="radio">
-          <label>
+    </div>
+    <div class="radio">
+      <label>
             <input type="radio" name="question1" value="no" [(ngModel)]="washingKnow"> No
           </label>
-        </div>
-      </fieldset>
     </div>
+  </fieldset>
+</div>
 
-    <!-- Question 2: Select the brand and model of your washing machine.-->
-    <div class="row" *ngIf="showQuestion2()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">Select the brand and model of your washing machine.</label>
-        <div class="row">
-          <div class="col-md-6">
-            <fieldset class="form-group">
-              <label>Select brand</label>
-              <div class="form-group">
-                <select class="form-control" [(ngModel)]="washingBrand" (change)="onWashingBrandSelected($event)">
+<!-- Question 2: Select the brand and model of your washing machine.-->
+<div class="row" *ngIf="showQuestion2()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">Select the brand and model of your washing machine.</label>
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset class="form-group">
+          <label>Select brand</label>
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="washingBrand" (change)="onWashingBrandSelected($event)">
                   <option *ngFor="let b of washingBrandList">{{b}}</option>
                 </select>
-              </div>
-            </fieldset>
           </div>
-          <div class="col-md-6">
-            <fieldset class="form-group">
-              <label>Select model</label>
-              <div class="form-group">
-                <select class="form-control" [(ngModel)]="washingModel" (change)="onWashingModelSelected($event)"> 
+        </fieldset>
+      </div>
+      <div class="col-md-6">
+        <fieldset class="form-group">
+          <label>Select model</label>
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="washingModel" (change)="onWashingModelSelected($event)"> 
                   <option *ngFor="let m of washingModelList">{{m}}</option>
                 </select>
-              </div>
-            </fieldset>
           </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 3: What is the capacity of your washing machine?-->
-    <div class="row" *ngIf="showQuestion3()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">What is the capacity of your washing machine?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question3" value="5kg" [(ngModel)]="washingCapacity"> 5kg
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question3" value="7kg" [(ngModel)]="washingCapacity"> 7kg
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question3" value="8.5kg" [(ngModel)]="washingCapacity"> 8.5kg
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 4 What is the loading type of your washing machine?-->
-    <div class="row" *ngIf="showQuestion4()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">What is the loading type of your washing machine?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question4" value="Top" [(ngModel)]="washingLoadingType"> Top
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question4" value="Front" [(ngModel)]="washingLoadingType"> Front
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 5 What is the energy star rating of your washing machine? -->
-    <div class="row" *ngIf="showQuestion5()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">What is the energy star rating of your washing machine?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question5" value="1" [(ngModel)]="washingRating"> lower than 2 stars
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question5" value="2" [(ngModel)]="washingRating"> 2~3.5 stars
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question5" value="3" [(ngModel)]="washingRating"> more that 4 stars
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 6 How often do you use washing machine per week on average? -->
-    <div class="row" *ngIf="showQuestion6()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">How often do you use washing machine per week on average?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question6" value="1" [(ngModel)]="washingFrequency"> Once
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question6" value="1.5" [(ngModel)]="washingFrequency"> 1.5 times
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question6" value="3" [(ngModel)]="washingFrequency"> 3 times
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question6" value="5" [(ngModel)]="washingFrequency"> 5 times or more
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 7: Do you use clothes dryer? If you do, do you also know the brand and model of it?-->
-    <div class="row" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">Do you use clothes dryer? If you do, do you also know the brand and model of it?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question7" value="yes" [(ngModel)]="dryKnow"> I use clothes dryer, and I also know its model.
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question7" value="no" [(ngModel)]="dryKnow"> I use clother dryer, but I am not sure about its model.
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question7" value="not using" [(ngModel)]="dryKnow"> I don't use clother dryer.
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 8: Select the brand and model of your clothes dryer.-->
-    <div class="row" *ngIf="showQuestion8()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">Select the brand and model of your clothes dryer.</label>
-        <div class="row">
-          <div class="col-md-6">
-            <fieldset class="form-group">
-              <label>Select brand</label>
-              <div class="form-group">
-                <select class="form-control" [(ngModel)]="dryBrand" (change)="onDryBrandSelected($event)">
-                  <option *ngFor="let b of dryBrandList">{{b}}</option>
-                </select>
-              </div>
-            </fieldset>
-          </div>
-          <div class="col-md-6">
-            <fieldset class="form-group">
-              <label>Select model</label>
-              <div class="form-group">
-                <select class="form-control" [(ngModel)]="dryModel" (change)="onDryModelSelected($event)"> 
-                  <option *ngFor="let m of dryModelList">{{m}}</option>
-                </select>
-              </div>
-            </fieldset>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 9: What is the type of your clothes dryer? -->
-    <div class="row" *ngIf="showQuestion9()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">What is the type of your clothes dryer?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question9" value="heat pump" [(ngModel)]="dryType"> Heat pump / Condenser
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question9" value="standard electric" [(ngModel)]="dryType"> Standard electric / Vented
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 10: What is the capacity of your clothes dryer?-->
-    <div class="row" *ngIf="showQuestion10()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">What is the capacity of your clothes dryer?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question10" value="4kg" [(ngModel)]="dryCapacity"> 4kg
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question10" value="6kg" [(ngModel)]="dryCapacity"> 6kg
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question10" value="8kg" [(ngModel)]="dryCapacity"> 8kg
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <!-- Question 11: How many times do you use the clothes dryer per week on average?-->
-    <div class="row" *ngIf="showQuestion11()" [@questionShowUp]>
-      <fieldset class="form-group">
-        <label class="question">How often do you use clothes dryer per week on average?</label>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question11" value="1" [(ngModel)]="dryFrequency"> Once
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question11" value="1.5" [(ngModel)]="dryFrequency"> 1.5 times
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question11" value="3" [(ngModel)]="dryFrequency"> 3 times
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="question11" value="5" [(ngModel)]="dryFrequency"> 5 times or more
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="row">
-      <div class="btn-group">
-        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/kitchen']" [routerLinkActive]="['router-link-active']">Previous section</button>
-        <button class="btn btn-warning" (click)="submit()" [routerLink]="['/home']" [routerLinkActive]="['router-link-active']">Back to home page</button>
-        <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/lighting']" [routerLinkActive]="['router-link-active']">Next section</button>
+        </fieldset>
       </div>
     </div>
+  </fieldset>
+</div>
 
-    <div class="row" style="margin: 10px 0">
-      <small>Commonwealth of Australia. (2016). Clothes Dryers[CSV]. Retrieved from http://reg.energyrating.gov.au/comparator/product_types/35/search/</small>
+<!-- Question 3: What is the capacity of your washing machine?-->
+<div class="row" *ngIf="showQuestion3()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">What is the capacity of your washing machine?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question3" value="5kg" [(ngModel)]="washingCapacity"> 5kg
+          </label>
     </div>
-    <div class="row" style="margin: 10px 0">
-      <small>Commonwealth of Australia. (2016). Clothes Washers[CSV]. Retrieved from http://reg.energyrating.gov.au/comparator/product_types/49/search/</small>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question3" value="7kg" [(ngModel)]="washingCapacity"> 7kg
+          </label>
     </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question3" value="8.5kg" [(ngModel)]="washingCapacity"> 8.5kg
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 4 What is the loading type of your washing machine?-->
+<div class="row" *ngIf="showQuestion4()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">What is the loading type of your washing machine?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question4" value="Top" [(ngModel)]="washingLoadingType"> Top
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question4" value="Front" [(ngModel)]="washingLoadingType"> Front
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 5 What is the energy star rating of your washing machine? -->
+<div class="row" *ngIf="showQuestion5()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">What is the energy star rating of your washing machine?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question5" value="1" [(ngModel)]="washingRating"> lower than 2 stars
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question5" value="2" [(ngModel)]="washingRating"> 2~3.5 stars
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question5" value="3" [(ngModel)]="washingRating"> more that 4 stars
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 6 How often do you use washing machine per week on average? -->
+<div class="row" *ngIf="showQuestion6()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">How often do you use washing machine per week on average?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question6" value="1" [(ngModel)]="washingFrequency"> Once
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question6" value="1.5" [(ngModel)]="washingFrequency"> 1.5 times
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question6" value="3" [(ngModel)]="washingFrequency"> 3 times
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question6" value="5" [(ngModel)]="washingFrequency"> 5 times or more
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 7: Do you use clothes dryer? If you do, do you also know the brand and model of it?-->
+<div class="row" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">Do you use clothes dryer? If you do, do you also know the brand and model of it?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question7" value="yes" [(ngModel)]="dryKnow"> I use clothes dryer, and I also know its model.
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question7" value="no" [(ngModel)]="dryKnow"> I use clother dryer, but I am not sure about its model.
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question7" value="not using" [(ngModel)]="dryKnow"> I don't use clother dryer.
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 8: Select the brand and model of your clothes dryer.-->
+<div class="row" *ngIf="showQuestion8()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">Select the brand and model of your clothes dryer.</label>
+    <div class="row">
+      <div class="col-md-6">
+        <fieldset class="form-group">
+          <label>Select brand</label>
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="dryBrand" (change)="onDryBrandSelected($event)">
+                  <option *ngFor="let b of dryBrandList">{{b}}</option>
+                </select>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-md-6">
+        <fieldset class="form-group">
+          <label>Select model</label>
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="dryModel" (change)="onDryModelSelected($event)"> 
+                  <option *ngFor="let m of dryModelList">{{m}}</option>
+                </select>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 9: What is the type of your clothes dryer? -->
+<div class="row" *ngIf="showQuestion9()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">What is the type of your clothes dryer?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question9" value="heat pump" [(ngModel)]="dryType"> Heat pump / Condenser
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question9" value="standard electric" [(ngModel)]="dryType"> Standard electric / Vented
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 10: What is the capacity of your clothes dryer?-->
+<div class="row" *ngIf="showQuestion10()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">What is the capacity of your clothes dryer?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question10" value="4kg" [(ngModel)]="dryCapacity"> 4kg
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question10" value="6kg" [(ngModel)]="dryCapacity"> 6kg
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question10" value="8kg" [(ngModel)]="dryCapacity"> 8kg
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<!-- Question 11: How many times do you use the clothes dryer per week on average?-->
+<div class="row" *ngIf="showQuestion11()" [@questionShowUp]>
+  <fieldset class="form-group">
+    <label class="question">How often do you use clothes dryer per week on average?</label>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question11" value="1" [(ngModel)]="dryFrequency"> Once
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question11" value="1.5" [(ngModel)]="dryFrequency"> 1.5 times
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question11" value="3" [(ngModel)]="dryFrequency"> 3 times
+          </label>
+    </div>
+    <div class="radio">
+      <label>
+            <input type="radio" name="question11" value="5" [(ngModel)]="dryFrequency"> 5 times or more
+          </label>
+    </div>
+  </fieldset>
+</div>
+
+<div class="row">
+  <div class="btn-group">
+    <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/kitchen']" [routerLinkActive]="['router-link-active']">
+          <i class="fa fa-mail-reply"></i> Previous section
+        </button>
+    <button class="btn btn-primary" (click)="submit()" [routerLink]="['/questionnaire/lighting']" [routerLinkActive]="['router-link-active']">
+          Next section <i class="fa fa-mail-forward"></i>
+        </button>
+  </div>
+</div>
 
 
-    <!-- this.inputFieldSetClasses = {
+<!-- this.inputFieldSetClasses = {
         "form-group": true,
         "has-success": false,
         "has-danger": false
@@ -282,6 +275,3 @@
         "form-control-success": false,
         "form-control-danger": false
       } -->
-
-  </div>
-</div>

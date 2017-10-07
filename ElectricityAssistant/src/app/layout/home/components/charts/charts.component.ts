@@ -275,24 +275,12 @@ export class ChartsComponent implements OnInit {
       this.dataService.setTotalCo2Emission(this.totalCo2Emission);
       this.showCharts = true;
       this.dataService.setShowCharts(this.showCharts);
+      this.dataService.showChartsSubject.next(true);
     }
   }
 
   public checkValidation(event: any): void {
-    if (event.target.value <= 0) {
-      this.validInput = false;
-      this.inputFieldSetClasses = {
-        "form-group": true,
-        "has-success": false,
-        "has-danger": true
-      }
-      this.inputNumberClasses = {
-        "form-control": true,
-        "form-control-success": false,
-        "form-control-danger": true
-      }
-    }
-    else {
+    if (event.target.value.match(/^[0-9]+\.?[0-9]*$/) != null) {
       this.validInput = true;
       this.inputFieldSetClasses = {
         "form-group": true,
@@ -303,6 +291,19 @@ export class ChartsComponent implements OnInit {
         "form-control": true,
         "form-control-success": true,
         "form-control-danger": false
+      }
+    }
+    else {
+      this.validInput = false;
+      this.inputFieldSetClasses = {
+        "form-group": true,
+        "has-success": false,
+        "has-danger": true
+      }
+      this.inputNumberClasses = {
+        "form-control": true,
+        "form-control-success": false,
+        "form-control-danger": true
       }
     }
   }
