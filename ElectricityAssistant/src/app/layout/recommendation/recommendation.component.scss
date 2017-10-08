@@ -1,3 +1,32 @@
-div.justify-content-center {
-    padding : 30px;
+div.container {
+    width: 100%;
+    height: auto;
+    background-image: url("../../../assets/images/header-bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
+div.row {
+    width: 100%;
+    height: auto;
+}
+
+div.block {
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-xxl {
+    width: 100%;
+    height: auto;
+    font-size: 2em;
+    margin-bottom: 20px;
 }

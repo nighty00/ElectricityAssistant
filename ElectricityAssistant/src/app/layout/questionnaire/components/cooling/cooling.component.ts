@@ -1,7 +1,9 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
+import { Response } from '@angular/http';
+import { Router, NavigationStart } from '@angular/router';
+
 import { DataService } from '../../../../shared/services/data.service';
 import { RestfulService } from '../../../../shared/services/restful.service';
-import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-cooling',
@@ -29,7 +31,7 @@ import { Response } from '@angular/http';
     ])
   ]
 })
-export class CoolingComponent implements OnInit {
+export class CoolingComponent implements OnInit, OnDestroy{
   //ngModel
   type: string;
   knowBrand: string;
@@ -46,7 +48,7 @@ export class CoolingComponent implements OnInit {
   totalUsage: number;
   energyConsumptionArray: { type: string, size: string, rating: string, consumption: number }[];
 
-  constructor(private dataService: DataService, private restfulService: RestfulService) { }
+  constructor(private dataService: DataService, private restfulService: RestfulService, private router: Router) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -90,6 +92,9 @@ export class CoolingComponent implements OnInit {
     this.loadBrandList();
   }
 
+  ngOnDestroy() {
+    this.submit();
+  }
   /**
    * states for showing questions
    */

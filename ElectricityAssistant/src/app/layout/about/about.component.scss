@@ -1,0 +1,45 @@
+div.container {
+    width: 100%;
+    height: auto;
+}
+
+div.row {
+    width: 100%;
+    height: auto;
+}
+
+div.main-content {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+div.paragraph {
+    margin-bottom: 40px;
+}
+
+span.title {
+    font-size: 2.5em;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+span.subtitle {
+    font-size: 1.8em;
+    font-style: italic;
+    padding-bottom: 50px;
+}
+
+
+img.steps-img {
+    height: auto;
+    width: 100%;
+}
+
+img.about-us-img {
+    max-width: 100%;
+    height: 500px;
+    display: block;
+}
+

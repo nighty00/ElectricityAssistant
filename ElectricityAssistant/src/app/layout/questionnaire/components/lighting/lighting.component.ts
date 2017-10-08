@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
 
 @Component({
@@ -27,7 +27,7 @@ import { DataService } from '../../../../shared/services/data.service';
     ])
   ]
 })
-export class LightingComponent implements OnInit {
+export class LightingComponent implements OnInit, OnDestroy {
 
   //ngModel
   public totalUsage: number;
@@ -49,6 +49,10 @@ export class LightingComponent implements OnInit {
     this.powerOfLights = this.dataService.lightPowerOfLights;
     this.switchOff = this.dataService.lightSwitchOff;
     this.sleepTime = this.dataService.lightSleepTime;
+  }
+
+  ngOnDestroy() {
+    this.submit();
   }
 
   public submit(): void {

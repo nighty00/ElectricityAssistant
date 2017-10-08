@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
 import { RestfulService } from '../../../../shared/services/restful.service';
 import { Response } from '@angular/http';
@@ -29,7 +29,7 @@ import { Response } from '@angular/http';
     ])
   ]
 })
-export class KitchenComponent implements OnInit {
+export class KitchenComponent implements OnInit, OnDestroy {
 
   /**
    * ngModel
@@ -64,7 +64,7 @@ export class KitchenComponent implements OnInit {
     setTimeout(() => {
       this.dataService.currentQuestionnairePage.next("kitchen");
     });
-    
+
     this.knowFridgeBrand = this.dataService.kitchenKnowFridgeBrand;
     this.fridgeBrand = this.dataService.kitchenFridgeBrand;
     this.fridgeModel = this.dataService.kitchenFridgeModel;
@@ -127,6 +127,10 @@ export class KitchenComponent implements OnInit {
 
     //load brand list
     this.loadFridgeBrandList();
+  }
+  
+  ngOnDestroy() {
+    this.submit();
   }
 
   /**

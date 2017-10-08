@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
 import { RestfulService } from '../../../../shared/services/restful.service';
 import { Response } from '@angular/http';
@@ -29,7 +29,7 @@ import { Response } from '@angular/http';
     ])
   ]
 })
-export class HeatingComponent implements OnInit {
+export class HeatingComponent implements OnInit, OnDestroy {
 
   /**
    * ngModel
@@ -91,6 +91,10 @@ export class HeatingComponent implements OnInit {
 
     //load brand list
     this.loadBrandList();
+  }
+
+  ngOnDestroy() {
+    this.submit();
   }
 
   /**

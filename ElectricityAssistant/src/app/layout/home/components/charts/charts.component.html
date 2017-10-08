@@ -33,20 +33,20 @@
     <div class="col-md-2">
       <div class="form-group">
         <label class="input-label">Month</label>
-        <select #monthSelector class="form-control" [(ngModel)]="monthSelected">
-          <option>--please select month--</option>
-          <option>January</option>
-          <option>February</option>
-          <option>March</option>
-          <option>April</option>
-          <option>May</option>
-          <option>June</option>
-          <option>July</option>
-          <option>August</option>
-          <option>Septemper</option>
-          <option>October</option>
-          <option>November</option>
-          <option>December</option>
+        <select #monthSelector class="form-control selectpicker" [(ngModel)]="monthSelected">
+            <option class="dropdown-item">--please select month--</option>
+            <option class="dropdown-item">January</option>
+            <option class="dropdown-item">February</option>
+            <option class="dropdown-item">March</option>
+            <option class="dropdown-item">April</option>
+            <option class="dropdown-item">May</option>
+            <option class="dropdown-item">June</option>
+            <option class="dropdown-item">July</option>
+            <option class="dropdown-item">August</option>
+            <option class="dropdown-item">Septemper</option>
+            <option class="dropdown-item">October</option>
+            <option class="dropdown-item">November</option>
+            <option class="dropdown-item">December</option>
         </select>
       </div>
     </div>
@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="col-md-1">
-      <i class="fa fa-question-circle help"></i>
+      <i class="fa fa-question-circle help" (mouseenter)="onEnterHelpIcon($event)" (mouseleave)="onLeaveHelpIcon($event)"></i>
     </div>
   </div>
   <div class="row justify-content-center" *ngIf="!isMonthSelected">
@@ -142,6 +142,10 @@
 <!-- instruction image -->
 <div class="info">
   <img class="img-fluid steps-img" src="../../../assets/images/3-steps.png" />
+</div>
+
+<div class="help-block" *ngIf="showHelpBlock" [style.top]="helpBlockTop + 'px'" [style.left]="helpBlockLeft + 'px'">
+  <span>You can get your electricity usage from your electricity bills. kWh is a commonly used unit of energy.</span>
 </div>
 
 <!-- blocks -->

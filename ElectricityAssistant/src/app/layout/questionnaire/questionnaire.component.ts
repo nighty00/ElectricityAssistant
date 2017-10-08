@@ -1,4 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
 import { routerTransition } from '../../router.animations';
 import { DataService } from '../../shared/services/data.service';
 
@@ -8,14 +10,15 @@ import { DataService } from '../../shared/services/data.service';
   styleUrls: ['./questionnaire.component.scss'],
   animations: [routerTransition()]
 })
-export class QuestionnaireComponent implements OnInit, OnChanges {
+export class QuestionnaireComponent implements OnInit, OnDestroy {
 
   currentPage: string;
+  mySubscription: Subscription;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.currentQuestionnairePage
+    this.mySubscription = this.dataService.currentQuestionnairePage
       .subscribe(
         (page: string) => {
           this.currentPage = page;
@@ -23,13 +26,8 @@ export class QuestionnaireComponent implements OnInit, OnChanges {
       );
   }
 
-  ngOnChanges() {
-    // this.dataService.currentQuestionnairePage
-    // .subscribe(
-    //   (page: string) => {
-    //     this.currentPage = page;
-    //   }
-    // );
+  ngOnDestroy() {
+    this.mySubscription.unsubscribe();
   }
 
   // onEntertainmentTagClick() {

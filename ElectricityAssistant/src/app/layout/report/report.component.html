@@ -1,126 +1,139 @@
-<div class="row">
-  <div class="col-md-12 text-center">
-    <h1>Current Status</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="card mb-3">
-      <div class="card-header">
-        Distribution of your electricity usage
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+
+      <!-- first report -->
+      <div class="row block">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h1>Current Status</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header">
+                Distribution of your electricity usage
+              </div>
+              <div class="card-block">
+                <canvas baseChart height="100px" [data]="reportPieChartData" [labels]="reportPieChartLabels" [chartType]="reportPieChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header">
+                Annual electricity consumption of your major household appliances(kWh)
+              </div>
+              <div class="card-block">
+                <canvas baseChart height="100px" [datasets]="reportBarChartData" [labels]="reportBarChartLabels" [options]="barChartOptions"
+                  [legend]="barChartLegend" [chartType]="reportBarChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card-block">
-        <canvas baseChart height="100px" [data]="reportPieChartData" [labels]="reportPieChartLabels" [chartType]="reportPieChartType">
-        </canvas>
+
+      <!-- comparison report -->
+      <div class="row block" *ngIf="showComparison">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header">
+                Your electricity usage after switching to recommended appliances
+              </div>
+              <div class="card-block">
+                <canvas baseChart height="100px" [data]="reportPieChart2Data" [labels]="reportPieChartLabels" [chartType]="reportPieChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-3">
+              <div class="card-header">
+                Annual electricity consumption of your major household appliances(kWh)
+              </div>
+              <div class="card-block">
+                <canvas baseChart height="100px" [datasets]="reportBarChart2Data" [labels]="reportBarChartLabels" [options]="barChartOptions"
+                  [legend]="barChartLegend" [chartType]="reportBarChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+            <h4>If you replace your household appliances with the recommended ones, every year you can save:</h4>
+          </div>
+          <div class="col-md-4">
+            <h6>Electircity: {{totalElectricitySaving}}kWh</h6>
+          </div>
+          <div class="col-md-4">
+            <h6>CO<sub>2</sub> emission: {{totalElectricitySaving * 0.7457 | number: '.1-2'}}kg</h6>
+          </div>
+          <div class="col-offset-2 col-md-2">
+            <h6>Bill: AUD${{totalElectricitySaving / 5.0}}</h6>
+          </div>
+        </div>
       </div>
+      
+      <!-- tips -->
+      <div class="row block">
+        <div class="col-md-12 text-center">
+          <h2>Tips for saving electricity</h2>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Tick the box to use these tips</label>
+            <div class="checkbox">
+              <label class="tips">
+                    <input type="checkbox" (change)="changeGeneralTips1($event)"> Competently turn off your electrical appliances such as TV, computer, microwave oven etc when you are not using them. 
+                  </label>
+            </div>
+            <div class="checkbox" *ngIf="showWashingTips1()">
+              <label class="tips">
+                    <input type="checkbox" (change)="changeWashingTips1($event)"> Every extra star could save you 25% of your washing machine’s energy use. Thus, we recommend you to switch to a 4-star rating washing machine. 
+                  </label>
+            </div>
+            <div class="checkbox" *ngIf="showDryerTips1()">
+              <label class="tips">
+                    <input type="checkbox" (change)="changeDryerTips1($event)"> Reduce the frequency of using clothes dryer to just once a week.
+                  </label>
+            </div>
+            <div class="checkbox" *ngIf="showLightTips1()">
+              <label class="tips">
+                    <input type="checkbox" (change)="changeLightTips1($event)"> Replacing all your halogen lights with LED or CFL lights
+                  </label>
+            </div>
+            <div class="checkbox" *ngIf="showLightTips2()">
+              <label class="tips">
+                    <input type="checkbox" (change)="changeLightTips2($event)"> Turn off the lights when sleeping
+                  </label>
+            </div>
+            <div class="checkbox" *ngIf="showCoolTips1()">
+              <label class="tips">
+                  <input type="checkbox" (change)="changeCoolTips1($event)"> Use the air-conditioner when the temperature reaches 30<sup>o</sup>C
+                  </label>
+            </div>
+            <div class="checkbox" *ngIf="showHeatTips1()">
+              <label class="tips">
+                    <input type="checkbox" (change)="changeHeatTips1($event)"> Use air-conditioner for heating instead of portable heater.
+                  </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <h4>Total annual saving: {{totalSaving | number: '.1-2'}}kWh</h4>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-primary" [routerLink]="['/recommendation']">View Appliances Recommendation</button>
+        </div>
+      </div>
+
+
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="card mb-3">
-      <div class="card-header">
-        Annual electricity consumption of your major household appliances(kWh)
-      </div>
-      <div class="card-block">
-        <canvas baseChart height="100px" [datasets]="reportBarChartData" [labels]="reportBarChartLabels" [options]="barChartOptions"
-          [legend]="barChartLegend" [chartType]="reportBarChartType">
-        </canvas>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row" *ngIf="showComparison">
-  <div class="col-md-6">
-    <div class="card mb-3">
-      <div class="card-header">
-        Your electricity usage after switching to recommended appliances
-      </div>
-      <div class="card-block">
-        <canvas baseChart height="100px" [data]="reportPieChart2Data" [labels]="reportPieChartLabels" [chartType]="reportPieChartType">
-        </canvas>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card mb-3">
-      <div class="card-header">
-        Annual electricity consumption of your major household appliances(kWh)
-      </div>
-      <div class="card-block">
-        <canvas baseChart height="100px" [datasets]="reportBarChart2Data" [labels]="reportBarChartLabels" [options]="barChartOptions"
-          [legend]="barChartLegend" [chartType]="reportBarChartType">
-        </canvas>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row justify-content-center" *ngIf="showComparison">
-  <div class="col-md-12">
-    <h4>If you replace your household appliances with the recommended ones, every year you can save:</h4>
-  </div>
-  <div class="col-md-4">
-    <h6>Electircity: {{totalElectricitySaving}}kWh</h6>
-  </div>
-  <div class="col-md-4">
-    <h6>CO<sub>2</sub> emission: {{totalElectricitySaving * 0.7457 | number: '.1-2'}}kg</h6>
-  </div>
-  <div class="col-offset-2 col-md-2">
-    <h6>Bill: AUD${{totalElectricitySaving / 5.0}}</h6>
-  </div>
-</div>
-
-<br>
-<div class="row">
-  <button class="btn btn-primary" [routerLink]="['/recommendation']">Appliances Recommendation</button>
-</div>
-
-<div class="row">
-  <div class="col-md-12 text-center">
-    <h2>Tips for saving electricity</h2>
-  </div>
-  <div class="col-md-12">
-    <div class="form-group">
-      <label>Tick the box to use these tips</label>
-      <div class="checkbox">
-        <label class="tips">
-            <input type="checkbox" (change)="changeGeneralTips1($event)"> Competently turn off your electrical appliances such as TV, computer, microwave oven etc when you are not using them. 
-          </label>
-      </div>
-      <div class="checkbox" *ngIf="showWashingTips1()">
-        <label class="tips">
-            <input type="checkbox" (change)="changeWashingTips1($event)"> Every extra star could save you 25% of your washing machine’s energy use. Thus, we recommend you to switch to a 4-star rating washing machine. 
-          </label>
-      </div>
-      <div class="checkbox" *ngIf="showDryerTips1()">
-        <label class="tips">
-            <input type="checkbox" (change)="changeDryerTips1($event)"> Reduce the frequency of using clothes dryer to just once a week.
-          </label>
-      </div>
-      <div class="checkbox" *ngIf="showLightTips1()">
-        <label class="tips">
-            <input type="checkbox" (change)="changeLightTips1($event)"> Replacing all your halogen lights with LED or CFL lights
-          </label>
-      </div>
-      <div class="checkbox" *ngIf="showLightTips2()">
-        <label class="tips">
-            <input type="checkbox" (change)="changeLightTips2($event)"> Turn off the lights when sleeping
-          </label>
-      </div>
-      <div class="checkbox" *ngIf="showCoolTips1()">
-        <label class="tips">
-          <input type="checkbox" (change)="changeCoolTips1($event)"> Use the air-conditioner when the temperature reaches 30<sup>o</sup>C
-          </label>
-      </div>
-      <div class="checkbox" *ngIf="showHeatTips1()">
-        <label class="tips">
-            <input type="checkbox" (change)="changeHeatTips1($event)"> Use air-conditioner for heating instead of portable heater.
-          </label>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-8">
-    <h4>Total annual saving: {{totalSaving | number: '.1-2'}}kWh</h4>
-  </div>
-
 </div>

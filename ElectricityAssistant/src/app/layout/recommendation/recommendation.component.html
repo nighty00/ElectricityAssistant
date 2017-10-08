@@ -1,52 +1,57 @@
-<div class="row justify-content-center" *ngIf="washingFlag">
-  <div class="row">
-    <h1>Washing machine</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-4" *ngFor="let washing of recommendWashingList; let i = index">
-      <app-thumbnail [type]="'washing machine'" [brand]="washing.brand" [model]="washing.model" [star]="washing.star" [power]="washing.power"
-        [capacity]="washing.cap == 'M' ? '<8kg' : '>8kg'" [image]="washing.image" [buy]="washing.buy" [index]="i"></app-thumbnail>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="row justify-content-center block" *ngIf="washingFlag">
+        <div class="row">
+          <h1>Washing machine</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngFor="let washing of recommendWashingList; let i = index">
+            <app-thumbnail [type]="'washing machine'" [brand]="washing.brand" [model]="washing.model" [star]="washing.star" [power]="washing.power"
+              [capacity]="washing.cap == 'M' ? '<8kg' : '>8kg'" [image]="washing.image" [buy]="washing.buy" [index]="i"></app-thumbnail>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center block" *ngIf="dryerFlag">
+        <div class="row">
+          <h1>Clothes dryer</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngFor="let dryer of recommendDryerList; let i = index">
+            <app-thumbnail [type]="'clothes dryer'" [brand]="dryer.brand" [model]="dryer.model" [star]="dryer.star" [power]="dryer.power"
+              [capacity]="dryer.cap == 'M' ? '<8kg' : '>8kg'" [image]="dryer.image" [buy]="dryer.buy" [index]="i"></app-thumbnail>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center block" *ngIf="tvFlag">
+        <div class="row">
+          <h1>Television</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngFor="let tv of recommendTvList; let i = index">
+            <app-thumbnail [type]="'television'" [brand]="tv.brand" [model]="tv.model" [star]="tv.star" [power]="tv.power" [screenSize]="tv.size == 'L' ? '>55 inch' : '<55 inch'"
+              [image]="tv.image" [buy]="tv.buy" [index]="i"></app-thumbnail>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center block" *ngIf="fridgeFlag">
+        <div class="row">
+          <h1>Fridge</h1>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngFor="let fridge of recommendFridgeList; let i = index">
+            <app-thumbnail [type]="'fridge'" [brand]="fridge.brand" [model]="fridge.model" [star]="fridge.star" [power]="fridge.power"
+              [volume]="fridge.size == 'L' ? '>500L' : '<500L'" [image]="fridge.image" [buy]="fridge.buy" [index]="i"></app-thumbnail>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-xl btn-xxl" (click)="checkReportAgain()" [routerLink]="['/report']">See how much you can save!</button>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="row justify-content-center" *ngIf="dryerFlag">
-  <div class="row">
-    <h1>Clothes dryer</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-4" *ngFor="let dryer of recommendDryerList; let i = index">
-      <app-thumbnail [type]="'clothes dryer'" [brand]="dryer.brand" [model]="dryer.model" [star]="dryer.star" [power]="dryer.power"
-        [capacity]="dryer.cap == 'M' ? '<8kg' : '>8kg'" [image]="dryer.image" [buy]="dryer.buy" [index]="i"></app-thumbnail>
-    </div>
-  </div>
-</div>
-
-<div class="row justify-content-center" *ngIf="tvFlag">
-  <div class="row">
-    <h1>Television</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-4" *ngFor="let tv of recommendTvList; let i = index">
-      <app-thumbnail [type]="'television'" [brand]="tv.brand" [model]="tv.model" [star]="tv.star" [power]="tv.power" [screenSize]="tv.size == 'L' ? '>55 inch' : '<55 inch'"
-        [image]="tv.image" [buy]="tv.buy" [index]="i"></app-thumbnail>
-    </div>
-  </div>
-</div>
-
-<div class="row justify-content-center" *ngIf="fridgeFlag">
-  <div class="row">
-    <h1>Fridge</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-4" *ngFor="let fridge of recommendFridgeList; let i = index">
-      <app-thumbnail [type]="'fridge'" [brand]="fridge.brand" [model]="fridge.model" [star]="fridge.star" [power]="fridge.power"
-        [volume]="fridge.size == 'L' ? '>500L' : '<500L'" [image]="fridge.image" [buy]="fridge.buy" [index]="i"></app-thumbnail>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <button class="btn btn-primary" (click)="checkReportAgain()" [routerLink]="['/report']"
-    style="margin: 40px">Comparison</button>
 </div>

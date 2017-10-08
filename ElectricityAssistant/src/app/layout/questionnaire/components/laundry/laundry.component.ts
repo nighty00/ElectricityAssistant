@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate, AfterViewChecked } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
 import { RestfulService } from '../../../../shared/services/restful.service';
 import { Response } from '@angular/http';
@@ -29,7 +29,7 @@ import { Response } from '@angular/http';
     ])
   ]
 })
-export class LaundryComponent implements OnInit {
+export class LaundryComponent implements OnInit, OnDestroy {
 
   //ngModel
   washingKnow: string;
@@ -146,6 +146,10 @@ export class LaundryComponent implements OnInit {
     this.loadDryerBrandList();
   }
 
+  ngOnDestroy() {
+    this.submit();
+  }
+  
   /**
    * states for showing questions
    */

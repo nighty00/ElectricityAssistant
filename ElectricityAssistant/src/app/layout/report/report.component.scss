@@ -1,11 +1,25 @@
+div.container {
+    width: 100%;
+    height: auto;
+    background-image: url("../../../assets/images/header-bg.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+}
+
 div.row {
-    padding: 10px 80px;
+    width: 100%;
+    height: auto;
 }
 
-.btn-primary {
-    margin : 10px;
-}
-
-.col-md-12 {
-    padding: 10px;
+div.block {
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin-bottom: 20px;
 }

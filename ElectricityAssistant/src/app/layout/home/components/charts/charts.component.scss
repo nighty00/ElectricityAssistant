@@ -118,4 +118,18 @@ i.help {
     margin-top: 36px;
     cursor: pointer;
     font-size: 30px;
+    color: #5EA125;
+}
+
+.help-block {
+    pointer-events: all;
+    position: absolute;
+    padding: 15px;
+    background-color: #fed136;
+    color: white;
+    border: 0px;
+    border-radius: 10px / 50%;
+    z-index: 999;
+    width: 250px;
+    height: auto;
 }

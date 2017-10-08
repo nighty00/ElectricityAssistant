@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit, OnDestroy, trigger, state, style, transition, animate } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
 import { RestfulService } from '../../../../shared/services/restful.service';
 
@@ -28,7 +28,7 @@ import { RestfulService } from '../../../../shared/services/restful.service';
     ])
   ]
 })
-export class EntertainmentComponent implements OnInit {
+export class EntertainmentComponent implements OnInit, OnDestroy {
 
   public totalUsage: number;
   public tvKnow: string;
@@ -120,6 +120,10 @@ export class EntertainmentComponent implements OnInit {
     ]
     //load brand list
     this.loadBrandList();
+  }
+
+  ngOnDestroy() {
+    this.submit();
   }
 
   showQuestion2(): boolean {
