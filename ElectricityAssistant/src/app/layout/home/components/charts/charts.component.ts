@@ -123,8 +123,8 @@ export class ChartsComponent implements OnInit {
   onEnterHelpIcon(event: any) {
     console.log(event);
     if(this.helpBlockTop == 0) {
-      this.helpBlockTop = event.pageY - 200;
-      this.helpBlockLeft = event.pageX - 280;
+      this.helpBlockTop = event.pageY - 380;
+      this.helpBlockLeft = event.pageX - 430;
     }
     this.showHelpBlock = true;
   }

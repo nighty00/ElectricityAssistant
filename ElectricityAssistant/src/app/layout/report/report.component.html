@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="card mb-3">
+            <!-- <div class="card mb-3">
               <div class="card-header">
                 Annual electricity consumption of your major household appliances(kWh)
               </div>
@@ -31,7 +31,9 @@
                   [legend]="barChartLegend" [chartType]="reportBarChartType">
                 </canvas>
               </div>
-            </div>
+            </div> -->
+            <h2>  Line Chart</h2>
+            <!-- <div id="line_chart" [chartData]="line_ChartData" [chartOptions]= "line_ChartOptions" chartType="LineChart" GoogleChart></div> -->
           </div>
         </div>
       </div>
@@ -79,13 +81,16 @@
           </div>
         </div>
       </div>
-      
+
       <!-- tips -->
       <div class="row block">
         <div class="col-md-12 text-center">
           <h2>Tips for saving electricity</h2>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-2">
+          <span class="note">Note: Tick the box to check how much energy you could save after apply our suggestions.</span>
+        </div>
+        <div class="col-md-10">
           <div class="form-group">
             <label>Tick the box to use these tips</label>
             <div class="checkbox">
@@ -123,14 +128,21 @@
                     <input type="checkbox" (change)="changeHeatTips1($event)"> Use air-conditioner for heating instead of portable heater.
                   </label>
             </div>
+            <div>
+              <h4>Total annual saving: {{totalSaving | number: '.1-2'}}kWh</h4>
+            </div>
           </div>
         </div>
-        <div class="col-md-8">
-          <h4>Total annual saving: {{totalSaving | number: '.1-2'}}kWh</h4>
+      </div>
+
+      <!-- recommendation button -->
+      <!-- <div class="row block">
+        <div class="col-md-12 text-center">
+          <h2>Energy Saving appliances recommendation</h2>
         </div>
-        <div class="col-md-4">
-          <button class="btn btn-primary" [routerLink]="['/recommendation']">View Appliances Recommendation</button>
-        </div>
+      </div> -->
+      <div class="row">
+        <button class="btn btn-xl btn-xxl" [routerLink]="['/recommendation']">View Appliances Recommendation</button>
       </div>
 
 

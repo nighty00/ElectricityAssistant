@@ -40,6 +40,21 @@ export class ReportComponent implements OnInit {
   public reportBarChart2Data: any[];
   public totalElectricitySaving: number;
 
+  public line_ChartData = [
+    ['Year', 'Sales', 'Expenses'],
+    ['2004', 1000, 400],
+    ['2005', 1170, 460],
+    ['2006', 660, 1120],
+    ['2007', 1030, 540]];
+
+  public line_ChartOptions = {
+    title: 'Company Performance',
+    curveType: 'function',
+    legend: {
+      position: 'bottom'
+    }
+  };
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
@@ -61,7 +76,7 @@ export class ReportComponent implements OnInit {
     this.generateReport();
     if (this.showComparison)
       this.totalElectricitySaving = this.dataService.totalElectricitySaving;
-      this.generateNewReport();
+    this.generateNewReport();
   }
 
   public generateReport(): void {
@@ -90,13 +105,13 @@ export class ReportComponent implements OnInit {
       }
     ]
 
-  //   this.reportPieChartData = [1, 1, 1, 1, 1, 1];
-  //   this.reportBarChartData = [
-  //     {
-  //       data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  //       label: "annual usage (kWh)"
-  //     }
-  //   ]
+    //   this.reportPieChartData = [1, 1, 1, 1, 1, 1];
+    //   this.reportBarChartData = [
+    //     {
+    //       data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    //       label: "annual usage (kWh)"
+    //     }
+    //   ]
     this.dataService.reportPieChartData = this.reportPieChartData;
     this.dataService.reportBarChartData = this.reportBarChartData;
   }
@@ -127,13 +142,13 @@ export class ReportComponent implements OnInit {
       }
     ]
 
-  //   this.reportPieChartData = [1, 1, 1, 1, 1, 1];
-  //   this.reportBarChartData = [
-  //     {
-  //       data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  //       label: "annual usage (kWh)"
-  //     }
-  //   ]
+    //   this.reportPieChartData = [1, 1, 1, 1, 1, 1];
+    //   this.reportBarChartData = [
+    //     {
+    //       data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    //       label: "annual usage (kWh)"
+    //     }
+    //   ]
     this.dataService.reportPieChart2Data = this.reportPieChart2Data;
     this.dataService.reportBarChart2Data = this.reportBarChart2Data;
   }
